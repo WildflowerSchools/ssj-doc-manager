@@ -6,7 +6,7 @@ import { collectionData } from 'rxfire/firestore';
 
 const app = firebase.initializeApp({ projectId: 'weather-fire' });
 app.firestore().settings({ timestampsInSnapshots: true });
-n
+
 class App extends React.Component {
   
   constructor() {
