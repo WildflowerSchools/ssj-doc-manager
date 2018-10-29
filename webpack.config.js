@@ -1,7 +1,7 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
-  modue: "
+  mode: 'development',
   module: {
     rules: [
       {
@@ -13,7 +13,7 @@ module.exports = {
       }
     ]
   },
-    plugins: [
+  plugins: [
     /* Copy files from src to dist */
     new CopyWebpackPlugin([ 
       './src/index.html',
