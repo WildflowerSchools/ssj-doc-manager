@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { compose } from 'recompose'
 
-import { SignUpLink } from '../SignUp'
 import { withFirebase } from '../Firebase'
 import * as ROUTES from '../../constants/routes'
 
@@ -72,11 +70,8 @@ class SignInGoogleBase extends Component {
   }
 }
 
-const SignInGoogle = compose(
-  withRouter,
-  withFirebase,
-)(SignInGoogleBase);
+const SignInGoogle = withRouter(withFirebase(SignInGoogleBase))
 
-export default SignInPage;
+export default SignInPage
 
-export { SignInGoogle };
+export { SignInGoogle }
