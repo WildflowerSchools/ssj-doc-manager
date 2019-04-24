@@ -13,8 +13,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "concurrently": "^4.0.1",
     "copy-webpack-plugin": "^4.5.4",
@@ -29,7 +30,8 @@
     "@babel/runtime": "^7.4.3",
     "express": "^4.16.4",
     "react": "^16.6.0",
-    "react-dom": "^16.6.0"
+    "react-dom": "^16.6.0",
+    "firebase-tools": "^5.1.1"
   },
   "engines": {
     "node": "10.x"

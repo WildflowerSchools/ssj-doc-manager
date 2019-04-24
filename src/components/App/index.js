@@ -1,5 +1,4 @@
 import { collectionData } from 'rxfire/firestore'
-import Firebase from './components/Firebase'
 
 class App extends React.Component {
   constructor() {
