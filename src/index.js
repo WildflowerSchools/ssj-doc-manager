@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { collectionData } from 'rxfire/firestore';
 
-const app = firebase.initializeApp({ projectId: 'weather-fire' });
+const app = firebase.initializeApp({ projectId: 'ssj-document-manager' });
 app.firestore().settings({ timestampsInSnapshots: true });
 
 class App extends React.Component {
