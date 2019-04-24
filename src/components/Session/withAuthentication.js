@@ -16,12 +16,12 @@ const withAuthentication = Component => {
     componentDidMount() {
       this.listener = this.props.firebase.onAuthUserListener(
         authUser => {
-          localStorage.setItem('authUser', JSON.stringify(authUser));
-          this.setState({ authUser });
+          localStorage.setItem('authUser', JSON.stringify(authUser))
+          this.setState({ authUser })
         },
         () => {
-          localStorage.removeItem('authUser');
-          this.setState({ authUser: null });
+          localStorage.removeItem('authUser')
+          this.setState({ authUser: null })
         },
       );
     }
@@ -39,7 +39,7 @@ const withAuthentication = Component => {
     }
   }
 
-  return withFirebase(WithAuthentication);
+  return withFirebase(WithAuthentication)
 };
 
-export default withAuthentication;
+export default withAuthentication
