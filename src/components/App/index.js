@@ -9,7 +9,7 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    const citiesRef = this.props.firebase.firestore().collection('cities')
+    const citiesRef = this.props.firebase.firestore.collection('cities')
     collectionData(citiesRef).subscribe(cities => {
       this.setState({ cities });
     })

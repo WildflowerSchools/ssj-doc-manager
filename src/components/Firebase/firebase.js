@@ -1,5 +1,6 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import app from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -12,13 +13,13 @@ const config = {
 
 class Firebase {
   constructor() {
-    firebase.initializeApp(config)
-    firebase.firestore().settings({ timestampsInSnapshots: true })
+    app.initializeApp(config)
+    app.firestore().settings({ timestampsInSnapshots: true })
     
-    this.firestore = firebase.firestore()
-    this.auth = firebase.auth()
+    this.firestore = app.firestore()
+    this.auth = app.auth()
     
-    this.googleProvider = new firebase.auth.GoogleAuthProvider()
+    this.googleProvider = new app.auth.GoogleAuthProvider()
   }
   
   doSignInWithGoogle = () => {
