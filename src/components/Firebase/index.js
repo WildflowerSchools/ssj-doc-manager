@@ -21,14 +21,11 @@ class Firebase {
     this.googleProvider = new firebase.auth.GoogleAuthProvider()
   }
   
-  test = () => {
-    x =1
-  }
-  doSignInWithGoogle() {
+  doSignInWithGoogle = () => {
     this.auth.signInWithPopup(this.googleProvider)
   }
 
-  doSignOut() {
+  doSignOut = () => {
     this.auth.signOut()
   }
 }

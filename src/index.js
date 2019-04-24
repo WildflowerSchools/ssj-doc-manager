@@ -1,32 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { collectionData } from 'rxfire/firestore';
-
-
-class App extends React.Component {
-  
-  constructor() {
-    super();
-    this.state = { cities: [] };
-  }
-  
-  componentDidMount() {
-    const citiesRef = app.firestore().collection('cities');
-    collectionData(citiesRef).subscribe(cities => {
-      this.setState({ cities });
-    });
-  }
-  
-  render() {
-    const lis = this.state.cities.map(c => {
-      return <li key={c.id}>{c.name} - {c.temperature}</li> 
-    });                               
-    return (
-      <ul>{lis}</ul>  
-    );
-  }
-  
-}
+import App from './components/App';
 
 ReactDOM.render(<App />, document.getElementById("root"));
