@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { collectionData } from 'rxfire/firestore'
+import { withFirebase } from '../Firebase'
 
-class App extends React.Component {
+class AppBase extends React.Component {
   constructor() {
     super()
     this.state = { cities: [] }
@@ -11,7 +12,7 @@ class App extends React.Component {
   componentDidMount() {
     const citiesRef = this.props.firebase.firestore.collection('cities')
     collectionData(citiesRef).subscribe(cities => {
-      this.setState({ cities });
+      this.setState({ cities })
     })
   }
   
@@ -24,5 +25,7 @@ class App extends React.Component {
     );
   } 
 }
+
+const App = withFirebase(AppBase)
 
 export default App
