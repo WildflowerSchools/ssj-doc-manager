@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { collectionData } from 'rxfire/firestore'
 
 class App extends React.Component {
