@@ -1,30 +1,26 @@
 import React from 'react'
-
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { collectionData } from 'rxfire/firestore'
-import { withFirebase } from '../Firebase'
 
-class AppBase extends React.Component {
-  constructor() {
-    super()
-    this.state = { cities: [] }
-  }
-  
-  componentDidMount() {
-    const citiesRef = this.props.firebase.firestore.collection('cities')
-    collectionData(citiesRef).subscribe(cities => {
-      this.setState({ cities })
-    })
-  }
-  
-  render() {
-    const lis = this.state.cities.map(c => {
-      return <li key={c.id}>{c.name} - {c.temperature}</li> 
-    });                               
-    return (
-      <ul>{lis}</ul>  
-    );
-  } 
-}
+import SignInPage from '../SignIn'
+import HomePage from '../Home'
+
+import { withFirebase } from '../Firebase'
+import { withAuthentication } from '../Session'
+
+import * as ROUTES from '../../constants/routes'
+
+const AppBase = () => (
+  <Router>
+    <div>
+      <Route exact path={ROUTES.LANDING} component={SignInPage} />
+
+      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+
+      <Route path={ROUTES.HOME} component={HomePage} />
+    </div>
+  </Router>
+)
 
 const App = withFirebase(AppBase)
 
