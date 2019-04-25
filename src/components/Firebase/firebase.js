@@ -39,6 +39,14 @@ class Firebase {
 
             // default empty roles
             console.log("Got onAuthStateChanged")
+            if (!dbUser.hasOwnProperty('roles')) {
+              dbUser.roles = {}
+              
+              this.user(authUser.uid).update({
+                roles: {}
+              })
+            }
+          
             if (!dbUser.roles) {
               dbUser.roles = {}
             }
