@@ -30,9 +30,7 @@ class Firebase {
   
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
-      console.log("firebase.js: Auth state changed")
       if (authUser) {
-        console.log("firebase.js: Now fetching user")
         this.user(authUser.uid)
           .get()
           .then(snapshot => {
@@ -52,11 +50,9 @@ class Firebase {
               ...dbUser,
             }
 
-            console.log("firebase.js: calling 'next'")
             next(authUser)
           });
       } else {
-        console.log("firebase.js: falling back")
         fallback()
       }
     })

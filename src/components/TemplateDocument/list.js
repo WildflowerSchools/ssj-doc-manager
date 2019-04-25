@@ -8,13 +8,14 @@ import * as ROLES from '../../constants/roles'
 
 class TemplateListBase extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { templates: [] };
+    super(props)
+    this.state = { templates: [] }
   }
   
   componentDidMount() {
     const templatesRef = this.props.firebase.firestore.collection('template_documents')
     collectionData(templatesRef).subscribe(templates => {
+      console.log(templates)
       this.setState({ templates })
     });
   }
@@ -23,7 +24,7 @@ class TemplateListBase extends React.Component {
     const lis = this.state.templates.map(c => {
       return
         <li key={c.id}>
-          <span>{c.stage}</span> - <a href={c.document_url}>{c.document_name}</a>
+          <span>Stage: {c.stage}</span> - <a href={c.document_url}>{c.document_name}</a>
         </li>
     })
     return (
