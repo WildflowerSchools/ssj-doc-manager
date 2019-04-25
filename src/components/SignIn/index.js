@@ -9,23 +9,23 @@ const SignInPage = () => (
     <h1>Sign In</h1>
     <SignInGoogle />
   </div>
-);
+)
 
 const ERROR_CODE_ACCOUNT_EXISTS =
-  'auth/account-exists-with-different-credential';
+  'auth/account-exists-with-different-credential'
 
 const ERROR_MSG_ACCOUNT_EXISTS = `
   An account with an E-Mail address to
   this social account already exists. Try to login from
   this account instead and associate your social accounts on
   your personal account page.
-`;
+`
 
 class SignInGoogleBase extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { error: null };
+    this.state = { error: null }
   }
 
   onSubmit = event => {
@@ -36,8 +36,7 @@ class SignInGoogleBase extends Component {
         return this.props.firebase.user(socialAuthUser.user.uid).set(
           {
             username: socialAuthUser.user.displayName,
-            email: socialAuthUser.user.email,
-            roles: {},
+            email: socialAuthUser.user.email
           },
           { merge: true },
         )
@@ -52,7 +51,7 @@ class SignInGoogleBase extends Component {
         }
 
         this.setState({ error })
-      });
+      })
 
     event.preventDefault()
   };
@@ -66,7 +65,7 @@ class SignInGoogleBase extends Component {
 
         {error && <p>{error.message}</p>}
       </form>
-    );
+    )
   }
 }
 
