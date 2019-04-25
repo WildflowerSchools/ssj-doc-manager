@@ -2,6 +2,7 @@ import React from 'react'
 
 import { withAuthorization } from '../Session'
 
+
 const HomePageBase = () => (
   <div>
     <h1>Home Page</h1>
