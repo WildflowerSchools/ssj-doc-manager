@@ -16,16 +16,13 @@ class TemplateListBase extends React.Component {
     const templatesRef = this.props.firebase.firestore.collection('template_documents')
     collectionData(templatesRef).subscribe(templates => {
       console.log(templates)
-      this.setState({ templates })
+      this.setState({ templates: templates })
     });
   }
   
   render() {
     const lis = this.state.templates.map(c => {
-      return
-        <li key={c.id}>
-          <span>Stage: {c.stage}</span> - <a href={c.document_url}>{c.document_name}</a>
-        </li>
+      return <li key={c.id}><span>Stage: {c.stage}</span> - <span>State: {c.state}</span><p><a href={c.document_url}>{c.document_name}</a></p></li>
     })
     return (
       <div>
