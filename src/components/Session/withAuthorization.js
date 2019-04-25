@@ -28,8 +28,10 @@ const withAuthorization = condition => Component => {
     render() {
       return (
         <AuthUserContext.Consumer>
-          {authUser =>
-            condition(authUser) ? <Component {...this.props} /> : null
+          {authUser => {
+              console.log("withAuthorization.js: In Consumer trigger - " + authUser)
+              return condition(authUser) ? <Component {...this.props} /> : null
+            }
           }
         </AuthUserContext.Consumer>
       );

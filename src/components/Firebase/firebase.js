@@ -52,10 +52,11 @@ class Firebase {
               ...dbUser,
             }
 
+            console.log("firebase.js: calling 'next'")
             next(authUser)
           });
       } else {
-        console.log("Ffirebase.js: alling back")
+        console.log("firebase.js: falling back")
         fallback()
       }
     })
