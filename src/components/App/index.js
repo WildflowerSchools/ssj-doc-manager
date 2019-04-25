@@ -6,6 +6,8 @@ import HomePage from '../Home'
 import LandingPage from '../Landing'
 import SignInPage from '../SignIn'
 
+import Navigation from '../Navigation'
+
 import { withAuthentication } from '../Session'
 
 import * as ROUTES from '../../constants/routes'
@@ -13,6 +15,10 @@ import * as ROUTES from '../../constants/routes'
 const AppBase = () => (
   <Router>
     <div>
+      <Navigation />
+      
+      <hr />
+      
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
 
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
