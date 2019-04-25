@@ -26,11 +26,16 @@ class TemplateListBase extends React.Component {
         states = 'All'
       }
       
+      let doc_link = '';
+      if (c.document_url) {
+        doc_link = (<a href={c.document_url}>{c.document_name || 'unspecified'}</a>)
+      }
+      
       return (
         <li key={c.id}>
           <p><b>Stage:</b> {c.stage || 'unspecified'}</p>
-          <p><b>State:s</b> {states}</p>
-          <p><b>Doc Link:</b> <a href={c.document_url || ''}>{c.document_name || 'unspecified'}</a></p>
+          <p><b>States:</b> {states}</p>
+          <p><b>Doc Link:</b> {doc_link}</p>
           <button>Remove</button>
         </li>
       )
@@ -40,7 +45,7 @@ class TemplateListBase extends React.Component {
       <div>
         <h3>Templates</h3>
         <button>Add New</button>
-        <ul>{lis}</ul> 
+        <ul className="alternate">{lis}</ul> 
       </div>
     );
   }

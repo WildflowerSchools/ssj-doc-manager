@@ -64,6 +64,9 @@ li {
   margin-bottom: 5px;
 }
 
+ul.alternate li { background: #fafafa; }
+ul.alternate li:nth-child(odd) { background: #fcfcfc; }
+
 footer {
   margin-top: 50px;
   padding-top: 25px;
