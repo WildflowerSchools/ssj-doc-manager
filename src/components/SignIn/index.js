@@ -29,6 +29,7 @@ class SignInGoogleBase extends Component {
   }
 
   onSubmit = event => {
+    console.log("onSubmit");
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {

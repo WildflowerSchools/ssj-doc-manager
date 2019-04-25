@@ -1,4 +1,4 @@
-import app from 'firebase/app'
+import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
@@ -13,13 +13,13 @@ const config = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(config)
-    app.firestore().settings({ timestampsInSnapshots: true })
+    firebase.initializeApp(config)
+    firebase.firestore().settings({ timestampsInSnapshots: true })
     
-    this.firestore = app.firestore()
-    this.auth = app.auth()
+    this.firestore = firebase.firestore()
+    this.auth = firebase.auth()
     
-    this.googleProvider = new app.auth.GoogleAuthProvider()
+    this.googleProvider = new firebase.auth.GoogleAuthProvider()
   }
   
   doSignInWithGoogle = () => {
