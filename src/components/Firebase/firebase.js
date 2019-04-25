@@ -14,9 +14,10 @@ const config = {
 class Firebase {
   constructor() {
     firebase.initializeApp(config)
-    firebase.firestore().settings({ timestampsInSnapshots: true })
     
     this.firestore = firebase.firestore()
+    this.firestore.settings({ timestampsInSnapshots: true })
+    
     this.auth = firebase.auth()
     
     this.googleProvider = new firebase.auth.GoogleAuthProvider()
