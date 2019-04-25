@@ -29,10 +29,11 @@ class SignInGoogleBase extends Component {
   }
 
   onSubmit = event => {
-    console.log("onSubmit");
     this.props.firebase
       .doSignInWithGoogle()
       .then(socialAuthUser => {
+        console.log("sign in promise")
+        console.log(socialAuthUser)
         // Create a user in your Firebase Realtime Database too
         return this.props.firebase.user(socialAuthUser.user.uid).set(
           {
@@ -41,25 +42,25 @@ class SignInGoogleBase extends Component {
             roles: {},
           },
           { merge: true },
-        );
+        )
       })
       .then(() => {
-        this.setState({ error: null });
-        this.props.history.push("/home");
+        this.setState({ error: null })
+        this.props.history.push("/home")
       })
       .catch(error => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS;
+          error.message = ERROR_MSG_ACCOUNT_EXISTS
         }
 
-        this.setState({ error });
+        this.setState({ error })
       });
 
-    event.preventDefault();
+    event.preventDefault()
   };
 
   render() {
-    const { error } = this.state;
+    const { error } = this.state
 
     return (
       <form onSubmit={this.onSubmit}>
