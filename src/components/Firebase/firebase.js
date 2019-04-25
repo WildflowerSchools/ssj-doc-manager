@@ -22,13 +22,11 @@ class Firebase {
     this.googleProvider = new firebase.auth.GoogleAuthProvider()
   }
   
-  doSignInWithGoogle = () => {
+  doSignInWithGoogle = () =>
     this.auth.signInWithPopup(this.googleProvider)
-  }
 
-  doSignOut = () => {
+  doSignOut = () =>
     this.auth.signOut()
-  }
   
   onAuthUserListener = (next, fallback) =>
     this.auth.onAuthStateChanged(authUser => {
@@ -58,6 +56,11 @@ class Firebase {
         fallback()
       }
     })
+
+  user = uid => this.firestore.doc(`users/${uid}`)
+
+  users = () => this.firestore.collection('users')
 }
+
 
 export default Firebase
