@@ -33,15 +33,20 @@ class SignInGoogleBase extends Component {
       .doSignInWithGoogle()
       .then(socialAuthUser => {
         // Create a user in your Firebase Realtime Database too
-        return this.props.firebase.user(socialAuthUser.user.uid).get()
+        console.log("Get socialAuthUser")
+        console.log(socialAuthUser)
+        return Promise.all([
+          this.props.firebase.user(socialAuthUser.user.uid).get(),
+          socialAuthUser])
       })
-      .then((record) => {
+      .then(([record, socialAuthUser]) => {
+        console.log("Store/update record")
+        console.log(socialAuthUser)
         let user = record.data()
         let data = {
           username: socialAuthUser.user.displayName,
           email: socialAuthUser.user.email
         }
-        console.log(user);
         if (!user) {
           data['roles'] = {}
         }
@@ -51,6 +56,7 @@ class SignInGoogleBase extends Component {
         )
       })
       .then(() => {
+        console.log("Update done!")
         this.setState({ error: null })
         this.props.history.push(ROUTES.HOME)
       })

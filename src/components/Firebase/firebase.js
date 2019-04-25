@@ -38,6 +38,7 @@ class Firebase {
             const dbUser = snapshot.data()
 
             // default empty roles
+            console.log("Got onAuthStateChanged")
             if (!dbUser.roles) {
               dbUser.roles = {}
             }
