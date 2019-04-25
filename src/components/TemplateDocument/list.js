@@ -21,19 +21,26 @@ class TemplateListBase extends React.Component {
   
   render() {
     const lis = this.state.templates.map(c => {
+      let states = c.states.join(', ');
+      if (c.all_states) {
+        states = 'All'
+      }
+      
       return (
-        <div key={c.id}>
+        <li key={c.id}>
           <p><b>Stage:</b> {c.stage || 'unspecified'}</p>
-          <p><b>State:</b> {c.state || 'unspecified'}</p>
+          <p><b>State:s</b> {states}</p>
           <p><b>Doc Link:</b> <a href={c.document_url || ''}>{c.document_name || 'unspecified'}</a></p>
-        </div>
+          <button>Remove</button>
+        </li>
       )
     })
     
     return (
       <div>
-      <h3>Templates</h3>
-      <div>{lis}</div> 
+        <h3>Templates</h3>
+        <button>Add New</button>
+        <ul>{lis}</ul> 
       </div>
     );
   }
