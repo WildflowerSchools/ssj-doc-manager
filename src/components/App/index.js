@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { collectionData } from 'rxfire/firestore'
 
-import SignInPage from '../SignIn'
+import AdminPage from '../Admin'
 import HomePage from '../Home'
+import LandingPage from '../Landing'
+import SignInPage from '../SignIn'
 
-import { withFirebase } from '../Firebase'
 import { withAuthentication } from '../Session'
 
 import * as ROUTES from '../../constants/routes'
@@ -13,15 +13,17 @@ import * as ROUTES from '../../constants/routes'
 const AppBase = () => (
   <Router>
     <div>
-      <Route exact path={ROUTES.LANDING} component={HomePage} />
+      <Route exact path={ROUTES.LANDING} component={LandingPage} />
 
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
 
       <Route path={ROUTES.HOME} component={HomePage} />
+      
+      <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>
   </Router>
 )
 
-const App = withFirebase(AppBase)
+const App = withAuthentication(AppBase)
 
 export default App
