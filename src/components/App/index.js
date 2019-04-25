@@ -13,7 +13,7 @@ import * as ROUTES from '../../constants/routes'
 const AppBase = () => (
   <Router>
     <div>
-      <Route exact path={ROUTES.LANDING} component={SignInPage} />
+      <Route exact path={ROUTES.LANDING} component={HomePage} />
 
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
 
