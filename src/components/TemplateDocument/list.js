@@ -36,7 +36,7 @@ class TemplateListBase extends React.Component {
           <p><b>Stage:</b> {c.stage || 'unspecified'}</p>
           <p><b>States:</b> {states}</p>
           <p><b>Doc Link:</b> {doc_link}</p>
-          <button>Remove</button>
+          <button>Edit</button>
         </li>
       )
     })

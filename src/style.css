@@ -64,6 +64,10 @@ li {
   margin-bottom: 5px;
 }
 
+ul.alternate { list-style-type: none; }
+ul.alternate li { background: #fcfcfc; }
+ul.alternate li:nth-child(odd) { background: #f3f3f3; }
+
 footer {
   margin-top: 50px;
   padding-top: 25px;
