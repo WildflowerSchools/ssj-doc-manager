@@ -15,20 +15,25 @@ class TemplateListBase extends React.Component {
   componentDidMount() {
     const templatesRef = this.props.firebase.firestore.collection('template_documents')
     collectionData(templatesRef, 'id').subscribe(templates => {
-      console.log(templates)
       this.setState({ templates: templates })
-    });
+    })
   }
   
   render() {
     const lis = this.state.templates.map(c => {
-      return <li key={c.id}><span>Stage: {c.stage}</span> - <span>State: {c.state}</span><p><a href={c.document_url}>{c.document_name}</a></p></li>
+      return (
+        <div key={c.id}>
+          <p><b>Stage:</b> {c.stage || 'unspecified'}</p>
+          <p><b>State:</b> {c.state || 'unspecified'}</p>
+          <p><b>Doc Link:</b> <a href={c.document_url || ''}>{c.document_name || 'unspecified'}</a></p>
+        </div>
+      )
     })
+    
     return (
       <div>
-      <h1>Template Document Page</h1>
-      <p>This page is only accessible by the admins.</p>
-      <ul>{lis}</ul> 
+      <h3>Templates</h3>
+      <div>{lis}</div> 
       </div>
     );
   }
