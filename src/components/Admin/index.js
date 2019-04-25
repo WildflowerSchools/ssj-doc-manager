@@ -2,6 +2,8 @@ import React from 'react'
 
 import { withAuthorization } from '../Session'
 
+import * as ROLES from '../../constants/roles'
+
 const AdminPageBase = () => (
   <div>
     <h1>Admin Page</h1>
