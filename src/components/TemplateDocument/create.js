@@ -15,40 +15,34 @@ class TemplateCreateBase extends React.Component {
   componentDidMount() {
   }
   
-  create() {
-    const templatesRef = this.props.firebase.firestore.collection('template_documents')
-    collectionData(templatesRef, 'id').subscribe(templates => {
-      this.setState({ templates: templates })
-    })
+  handleSubmit() {
+    
+    return this.props.firebase.template_document().set(
+      this.state.template
+    )
   }
   
   render() {
-    const lis = this.state.templates.map(c => {
-      let states = c.states.join(', ');
-      if (c.all_states) {
-        states = 'All'
-      }
-      
-      let doc_link = '';
-      if (c.document_url) {
-        doc_link = (<a href={c.document_url}>{c.document_name || 'unspecified'}</a>)
-      }
-      
-      return (
-        <li key={c.id}>
-          <p><b>Stage:</b> {c.stage || 'unspecified'}</p>
-          <p><b>States:</b> {states}</p>
-          <p><b>Doc Link:</b> {doc_link}</p>
-          <button>Edit</button>
-        </li>
-      )
-    })
-    
     return (
       <div>
-        <h3>Templates</h3>
-        <button>Add New</button>
-        <ul className="alternate">{lis}</ul> 
+        <h3>Create Template Document</h3>
+        <form onSubmit={this.handleSubmit>
+          <label>
+            Name:
+            <input type="text" value={this.state.value} />
+          </label>
+          <label>
+            Name:
+            <input type="text" value={this.state.value} />
+          </label>
+          <label>
+            Name:
+            <input type="text" value={this.state.value} />
+          </label>
+        
+          <input type="submit" value="Submit" />
+        </form>
+        <button>Create</button>
       </div>
     );
   }

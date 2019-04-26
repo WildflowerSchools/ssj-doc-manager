@@ -70,6 +70,8 @@ class Firebase {
 
   users = () => this.firestore.collection('users')
 
+  template_document = tid => this.firestore.doc(`template_documents/${tid}`)
+
   template_documents = () => this.firestore.collection('template_documents')
 }
 
