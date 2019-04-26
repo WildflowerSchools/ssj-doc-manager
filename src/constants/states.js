@@ -3,4 +3,8 @@ export const STATES = {
   ma: 'Massachusetts'
 }
 
-export const STATES_AS_OPTIONS = STATES.map((va
+for (const key in STATES) {
+  let val = STATES[key];
+  {key: val}
+}
+export const STATES_AS_OPTIONS = STATES.map((val, key) => 'val': key)
