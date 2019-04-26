@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from 'react-select';
 import { collectionData } from 'rxfire/firestore'
 
 import { withAuthorization } from '../Session'
@@ -9,12 +10,15 @@ import * as ROLES from '../../constants/roles'
 class TemplateCreateBase extends React.Component {
   constructor(props) {
     super(props)
+    
+    
+    
     this.state = {
       newTemplate: {
-        all_states: false,
         document_name: '',
         document_url: '',
-        state: '',
+        stage: '',
+        all_states: false,
         states: []
       }
     }
@@ -36,20 +40,32 @@ class TemplateCreateBase extends React.Component {
         <h3>Create Template Document</h3>
         <form onSubmit={this.handleSubmit>
           <label>
+            Document Name:
+            <input type="text" value={this.state.newTemplate.document_name} />
+          </label>
+          <label>
+            Document URL:
+            <input type="text" value={this.state.newTemplate.document_url} />
+          </label>
+          <label>
+            Startup Journey Stage:
+            <select
+              value={this.state.value}
+              options={options} />
+          </label>
+          <label>
+            Valid for All States?
             <input
-              name="isGoing"
+              name="all_states"
               type="checkbox"
-              checked={his.state.newTemplate.all_states} />
+              checked={this.state.newTemplate.all_states} />
           </label>
-          <label>
-            Name:
-            <input type="text" value={this.state.newTemplate} />
+          <label disabled={this.state.newTemplate.all_states} >
+            State
+            <select
+              value={this.state.newTemplate.states}
+              options={options} />
           </label>
-          <label>
-            Name:
-            <input type="text" value={this.state.newTemplate} />
-          </label>
-        
           <input type="submit" value="Submit" />
         </form>
         <button>Create</button>
