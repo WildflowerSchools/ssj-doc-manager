@@ -6,14 +6,16 @@ import { withAuthorization } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
+import * as ROUTES from '../../constants/routes'
+import STATES_AS_OPTIONS from '../../constants/states'
+import STAGES_AS_OPTIONS from '../../constants/stages'
 
 class TemplateCreateBase extends React.Component {
   constructor(props) {
     super(props)
     
-    
-    
     this.state = {
+      error: null,
       newTemplate: {
         document_name: '',
         document_url: '',
@@ -28,10 +30,14 @@ class TemplateCreateBase extends React.Component {
   }
   
   handleSubmit() {
-    
     return this.props.firebase.template_document().set(
       this.state.template
     )
+    .then(() => {
+      console.log("Created template document!")
+      this.setState({ error: null })
+      this.props.history.push(ROUTES.ADMIN)
+    })
   }
   
   render() {
@@ -50,8 +56,8 @@ class TemplateCreateBase extends React.Component {
           <label>
             Startup Journey Stage:
             <select
-              value={this.state.value}
-              options={options} />
+              value={this.state.newTemplate.stage}
+              options={STAGES_AS_OPTIONS} />
           </label>
           <label>
             Valid for All States?
@@ -64,7 +70,8 @@ class TemplateCreateBase extends React.Component {
             State
             <select
               value={this.state.newTemplate.states}
-              options={options} />
+              options={STATES_AS_OPTIONS}
+              isMulti={true} />
           </label>
           <input type="submit" value="Submit" />
         </form>

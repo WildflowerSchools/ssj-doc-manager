@@ -13,7 +13,8 @@ class TemplateListBase extends React.Component {
   }
   
   componentDidMount() {
-    const templatesRef = this.props.firebase.template_documents
+    // this.props.firebase.firestore.collection('user_documents')
+    const templatesRef = this.props.firebase.template_documents()
     collectionData(templatesRef, 'id').subscribe(templates => {
       this.setState({ templates: templates })
     })

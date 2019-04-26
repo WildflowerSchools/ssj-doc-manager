@@ -3,8 +3,4 @@ export const STATES = {
   ma: 'Massachusetts'
 }
 
-for (const key in STATES) {
-  let val = STATES[key];
-  {key: val}
-}
-export const STATES_AS_OPTIONS = STATES.map((val, key) => 'val': key)
+export const STATES_AS_OPTIONS = Object.keys(STATES).map((key) => { return {'value': key, 'label': STATES[key]} } )
