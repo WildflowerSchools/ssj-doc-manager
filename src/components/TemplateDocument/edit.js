@@ -6,14 +6,14 @@ import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
 
-class TemplateListBase extends React.Component {
+class TemplateEditBase extends React.Component {
   constructor(props) {
     super(props)
     this.state = { templates: [] }
   }
   
   componentDidMount() {
-    const templatesRef = this.props.firebase.template_documents
+    const templatesRef = this.props.firebase.firestore.collection('template_documents')
     collectionData(templatesRef, 'id').subscribe(templates => {
       this.setState({ templates: templates })
     })
@@ -53,5 +53,5 @@ class TemplateListBase extends React.Component {
 
 const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
 
-const TemplateList = withFirebase(withAuthorization(condition)(TemplateListBase))
-export default TemplateList
+const TemplateEdit = withFirebase(withAuthorization(condition)(TemplateEditBase))
+export default TemplateEdit

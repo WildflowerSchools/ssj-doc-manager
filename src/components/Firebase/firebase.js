@@ -38,7 +38,6 @@ class Firebase {
             const dbUser = snapshot.data()
 
             // default empty roles
-            console.log("Got onAuthStateChanged")
             if (!dbUser.hasOwnProperty('roles')) {
               dbUser.roles = {}
               
@@ -70,6 +69,8 @@ class Firebase {
   user = uid => this.firestore.doc(`users/${uid}`)
 
   users = () => this.firestore.collection('users')
+
+  template_documents = () => this.firestore.collection('template_documents')
 }
 
 
