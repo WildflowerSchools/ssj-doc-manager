@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import React from 'react'
 import { collectionData } from 'rxfire/firestore'
 
@@ -13,7 +15,6 @@ class TemplateListBase extends React.Component {
   }
   
   componentDidMount() {
-    // this.props.firebase.firestore.collection('user_documents')
     const templatesRef = this.props.firebase.template_documents()
     collectionData(templatesRef, 'id').subscribe(templates => {
       this.setState({ templates: templates })
@@ -45,7 +46,7 @@ class TemplateListBase extends React.Component {
     return (
       <div>
         <h3>Templates</h3>
-        <button>Add New</button>
+        <Link to={ROUTES.CREATE_TEMPLATE}>Add New</Link>
         <ul className="alternate">{lis}</ul> 
       </div>
     );
