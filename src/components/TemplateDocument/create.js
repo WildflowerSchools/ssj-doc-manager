@@ -9,7 +9,15 @@ import * as ROLES from '../../constants/roles'
 class TemplateCreateBase extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { template: {} }
+    this.state = {
+      newTemplate: {
+        all_states: false,
+        document_name: '',
+        document_url: '',
+        state: '',
+        states: []
+      }
+    }
   }
   
   componentDidMount() {
@@ -28,16 +36,18 @@ class TemplateCreateBase extends React.Component {
         <h3>Create Template Document</h3>
         <form onSubmit={this.handleSubmit>
           <label>
-            Name:
-            <input type="text" value={this.state.value} />
+            <input
+              name="isGoing"
+              type="checkbox"
+              checked={his.state.newTemplate.all_states} />
           </label>
           <label>
             Name:
-            <input type="text" value={this.state.value} />
+            <input type="text" value={this.state.newTemplate} />
           </label>
           <label>
             Name:
-            <input type="text" value={this.state.value} />
+            <input type="text" value={this.state.newTemplate} />
           </label>
         
           <input type="submit" value="Submit" />
