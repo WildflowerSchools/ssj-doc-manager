@@ -13,7 +13,7 @@ class UserDocumentListBase extends React.Component {
   }
   
   componentDidMount() {
-    const templatesRef = this.props.firebase.firestore.collection('template_documents')
+    const templatesRef = this.props.firebase.firestore.collection('user_documents')
     collectionData(templatesRef, 'id').subscribe(templates => {
       this.setState({ templates: templates })
     })

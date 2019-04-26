@@ -7,7 +7,7 @@ const LandingPageBase = () => (
     <p>The Landing Page is accessible by everyone</p>
     <UserDocumentList />
   </div>
-);
+)
 
 const LandingPage = LandingPageBase
 export default LandingPage
