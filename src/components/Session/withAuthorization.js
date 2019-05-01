@@ -38,3 +38,8 @@ const withAuthorization = condition => Component => {
 }
 
 export default withAuthorization
+
+const isAuthenticated = authUser => !!authUser
+const isAdmin = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
+
+export { isAuthenticated, isAdmin }

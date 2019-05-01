@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withAuthorization } from '../Session'
+import { withAuthorization, isAdmin } from '../Session'
 import { TemplateList } from '../TemplateDocument'
 
 import * as ROLES from '../../constants/roles'
@@ -14,7 +14,5 @@ const AdminPageBase = () => (
   </div>
 );
 
-const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
-
-const AdminPage = withAuthorization(condition)(AdminPageBase)
+const AdminPage = withAuthorization(isAdmin)(AdminPageBase)
 export default AdminPage

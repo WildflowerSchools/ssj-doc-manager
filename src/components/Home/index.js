@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { withAuthorization } from '../Session'
+import { withAuthorization, isAuthenticated } from '../Session'
 import { UserDocumentList } from '../UserDocument'
 
 
@@ -11,7 +11,5 @@ const HomePageBase = () => (
   </div>
 );
 
-const condition = authUser => !!authUser
-
-const HomePage = withAuthorization(condition)(HomePageBase)
+const HomePage = withAuthorization(isAuthenticated)(HomePageBase)
 export default HomePage

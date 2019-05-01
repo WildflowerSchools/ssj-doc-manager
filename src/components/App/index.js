@@ -8,9 +8,21 @@ import SignInPage from '../SignIn'
 
 import Navigation from '../Navigation'
 
-import { withAuthentication } from '../Session'
+import { withAuthentication, AuthUserContext } from '../Session'
 
 import * as ROUTES from '../../constants/routes'
+
+const RouteAuthLanding = () => (
+  <AuthUserContext.Consumer>
+    {authUser =>
+      authUser ? (
+        <Route path={[ROUTES.HOME, ROUTES.LANDING]} component={HomePage} />
+      ) : (
+        <Route exact path={ROUTES.LANDING} component={LandingPage} />
+      )
+    }
+  </AuthUserContext.Consumer>
+)
 
 const AppBase = () => (
   <Router>
@@ -19,11 +31,9 @@ const AppBase = () => (
       
       <hr />
       
-      <Route exact path={ROUTES.LANDING} component={LandingPage} />
-
+      <RouteAuthLanding />
+      
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-
-      <Route path={ROUTES.HOME} component={HomePage} />
       
       <Route path={ROUTES.ADMIN} component={AdminPage} />
     </div>
