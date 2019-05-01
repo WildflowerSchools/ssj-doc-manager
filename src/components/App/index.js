@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import AdminPage from '../Admin'
+import { TemplateCreatePage } from '../TemplateDocument/'
 import HomePage from '../Home'
 import LandingPage from '../Landing'
 import SignInPage from '../SignIn'
@@ -36,7 +37,7 @@ const AppBase = () => (
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       
       <Route exact path={ROUTES.ADMIN} component={AdminPage} />
-      <Route exact path={ROUTES.ADMIN_CREATE_TEMPLATE} component={} />
+      <Route exact path={ROUTES.ADMIN_CREATE_TEMPLATE} component={TemplateCreatePage} />
       
     </div>
   </Router>

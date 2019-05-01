@@ -4,4 +4,4 @@ export const STAGES = {
   startup: 'Startup'
 }
 
-export const STAGES_AS_OPTIONS = Object.keys(STATES).map((key) => { return {'value': key, 'label': STATES[key]} } )
+export const STAGES_AS_OPTIONS = Object.keys(STAGES).map((key) => { return {'value': key, 'label': STAGES[key]} } )

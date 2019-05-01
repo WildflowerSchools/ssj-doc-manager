@@ -26,9 +26,6 @@ class TemplateCreateBase extends React.Component {
     }
   }
   
-  componentDidMount() {
-  }
-  
   handleSubmit() {
     return this.props.firebase.template_document().set(
       this.state.template
@@ -44,7 +41,7 @@ class TemplateCreateBase extends React.Component {
     return (
       <div>
         <h3>Create Template Document</h3>
-        <form onSubmit={this.handleSubmit>
+        <form onSubmit={this.handleSubmit}>
           <label>
             Document Name:
             <input type="text" value={this.state.newTemplate.document_name} />
