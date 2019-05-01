@@ -12,9 +12,8 @@ module.exports = () => {
     return prev;
   }, {});
   
-  return {
+  let conf = {
     mode: 'development',
-    devtool: 'eval-source-map',
     module: {
       rules: [
         {
@@ -37,4 +36,8 @@ module.exports = () => {
       ])
     ]
   }
+  
+  let production = options.mode === 'production'
+	conf.devtool = production ? false : 'eval-source-map'
+	return conf
 }
