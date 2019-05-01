@@ -40,6 +40,20 @@ class CreateForm extends React.Component {
   }
   
   render() {
+    const {
+      values,
+      touched,
+      dirty,
+      errors,
+      handleChange,
+      handleBlur,
+      handleSubmit,
+      handleReset,
+      setFieldValue,
+      setFieldTouched,
+      isSubmitting,
+    } = props;
+
     return (
       <Formik
         initialValues={this.newTemplate}
@@ -49,21 +63,25 @@ class CreateForm extends React.Component {
           console.log(values);
         }}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, handleChange, setFieldTouched }) => (
           <Form>
-            <label htmlFor="firstName">First Name</label>
             <label>
               Document Name:
-              <input type="text" defaultValue={this.state.newTemplate.document_name} />
+              <Field type="text" name="document_name" />
+              {errors.document_name && touched.document_name ? (
+                <div>{errors.document_name}</div>
+              ) : null}
             </label>
             <label>
               Document URL:
-              <input type="text" value={this.state.newTemplate.document_url} />
+              <input type="url" name="document_url" />
             </label>
             <label>
               Startup Journey Stage:
               <Select
-                defaultValue={this.state.newTemplate.stage}
+                value={this.state.newTemplate.stage}
+                onChange={handleChange}
+                onBlur={setFieldTouched}
                 options={STAGES_AS_OPTIONS} />
             </label>
             <label>
@@ -77,11 +95,15 @@ class CreateForm extends React.Component {
               State
               <Select
                 isDisabled={this.state.newTemplate.all_states}
-                defaultValue={this.state.newTemplate.states}
+                isMulti={true}
                 options={STATES_AS_OPTIONS}
-                isMulti={true} />
+                onChange={handleChange}
+                onBlur={setFieldTouched}
+                value={this.newTemplate.states} />
             </label>
-            <input type="submit" value="Submit" />
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
           </form>
         )}
       </Formik>
