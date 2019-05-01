@@ -32,38 +32,51 @@ class CreateForm extends React.Component {
   
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Document Name:
-          <input type="text" defaultValue={this.state.newTemplate.document_name} />
-        </label>
-        <label>
-          Document URL:
-          <input type="text" value={this.state.newTemplate.document_url} />
-        </label>
-        <label>
-          Startup Journey Stage:
-          <Select
-            defaultValue={this.state.newTemplate.stage}
-            options={STAGES_AS_OPTIONS} />
-        </label>
-        <label>
-          Valid for All States?
-          <input
-            name="all_states"
-            type="checkbox"
-            defaultChecked={this.state.newTemplate.all_states} />
-        </label>
-        <label >
-          State
-          <Select
-            isDisabled={this.state.newTemplate.all_states}
-            defaultValue={this.state.newTemplate.states}
-            options={STATES_AS_OPTIONS}
-            isMulti={true} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <Formik
+        initialValues={{
+          firstName: '',
+          lastName: '',
+          email: '',
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={values => {
+          // same shape as initial values
+          console.log(values);
+        }}
+      >
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Document Name:
+            <input type="text" defaultValue={this.state.newTemplate.document_name} />
+          </label>
+          <label>
+            Document URL:
+            <input type="text" value={this.state.newTemplate.document_url} />
+          </label>
+          <label>
+            Startup Journey Stage:
+            <Select
+              defaultValue={this.state.newTemplate.stage}
+              options={STAGES_AS_OPTIONS} />
+          </label>
+          <label>
+            Valid for All States?
+            <input
+              name="all_states"
+              type="checkbox"
+              defaultChecked={this.state.newTemplate.all_states} />
+          </label>
+          <label >
+            State
+            <Select
+              isDisabled={this.state.newTemplate.all_states}
+              defaultValue={this.state.newTemplate.states}
+              options={STATES_AS_OPTIONS}
+              isMulti={true} />
+          </label>
+          <input type="submit" value="Submit" />
+        </form>
+      </Formik>
     )
   }
 }
