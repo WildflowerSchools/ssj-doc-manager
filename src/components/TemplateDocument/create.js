@@ -49,7 +49,7 @@ class TemplateCreateBase extends React.Component {
           </label>
           <label>
             Document URL:
-            <input type="text" defaultValue={this.state.newTemplate.document_url} />
+            <input type="text" value={this.state.newTemplate.document_url} />
           </label>
           <label>
             Startup Journey Stage:
