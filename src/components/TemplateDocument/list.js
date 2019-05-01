@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 import { collectionData } from 'rxfire/firestore'
 
-import { withAuthorization } from '../Session'
+import { withAuthorization, isAdmin } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
@@ -54,7 +54,5 @@ class TemplateListBase extends React.Component {
   }
 }
 
-const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
-
-const TemplateList = withFirebase(withAuthorization(condition)(TemplateListBase))
+const TemplateList = withFirebase(withAuthorization(isAdmin)(TemplateListBase))
 export default TemplateList

@@ -1,7 +1,7 @@
 import React from 'react'
 import { collectionData } from 'rxfire/firestore'
 
-import { withAuthorization } from '../Session'
+import { withAuthorization, isAdmin } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
@@ -51,7 +51,5 @@ class TemplateEditBase extends React.Component {
   }
 }
 
-const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
-
-const TemplateEdit = withFirebase(withAuthorization(condition)(TemplateEditBase))
+const TemplateEdit = withFirebase(withAuthorization(isAdmin)(TemplateEditBase))
 export default TemplateEdit

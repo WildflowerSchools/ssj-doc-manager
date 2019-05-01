@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select';
 import { collectionData } from 'rxfire/firestore'
 
-import { withAuthorization } from '../Session'
+import { withAuthorization, isAdmin } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
@@ -81,7 +81,5 @@ class TemplateCreateBase extends React.Component {
   }
 }
 
-const condition = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
-
-const TemplateCreate = withFirebase(withAuthorization(condition)(TemplateCreateBase))
+const TemplateCreate = withFirebase(withAuthorization(isAdmin)(TemplateCreateBase))
 export default TemplateCreate

@@ -1,7 +1,7 @@
 import React from 'react'
 import { collectionData } from 'rxfire/firestore'
 
-import { withAuthorization } from '../Session'
+import { withAuthorization, isAuthenticated } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
@@ -45,7 +45,5 @@ class UserDocumentListBase extends React.Component {
   }
 }
 
-const condition = authUser => !!authUser
-
-const UserDocumentList = withFirebase(withAuthorization(condition)(UserDocumentListBase))
+const UserDocumentList = withFirebase(withAuthorization(isAuthenticated)(UserDocumentListBase))
 export default UserDocumentList

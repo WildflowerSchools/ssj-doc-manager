@@ -37,9 +37,9 @@ const withAuthorization = condition => Component => {
   return withRouter(withFirebase(WithAuthorization))
 }
 
-export default withAuthorization
-
 const isAuthenticated = authUser => !!authUser
 const isAdmin = authUser => authUser && !!authUser.roles[ROLES.ADMIN]
+
+export default withAuthorization
 
 export { isAuthenticated, isAdmin }
