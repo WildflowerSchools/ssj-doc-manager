@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select';
+import { Formik } from 'formik';
 import { collectionData } from 'rxfire/firestore'
 
 import { withAuthorization, isAdmin } from '../Session'
@@ -9,6 +10,9 @@ import * as ROLES from '../../constants/roles'
 import * as ROUTES from '../../constants/routes'
 import { STATES_AS_OPTIONS } from '../../constants/states'
 import { STAGES_AS_OPTIONS } from '../../constants/stages'
+
+class CreateForm extends React.Component {
+}
 
 class TemplateCreateBase extends React.Component {
   constructor(props) {
