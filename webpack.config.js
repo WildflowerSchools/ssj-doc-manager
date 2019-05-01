@@ -15,7 +15,7 @@ module.exports = () => {
   
   return {
     mode: mode,
-    devtool: mode === 'production' ? false : 'cheap-eval-source-map',
+    devtool: mode === 'production' ? false : 'eval-source-map',
     module: {
       rules: [
         {

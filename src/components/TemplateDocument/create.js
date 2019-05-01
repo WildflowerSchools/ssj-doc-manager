@@ -41,15 +41,6 @@ class CreateForm extends React.Component {
   }
   
   render() {
-    const {
-      errors,
-      touched,
-      handleChange,
-      setFieldTouched,
-      isSubmitting,
-      values
-    } = this.props;
-
     return (
       <Formik
         initialValues={this.newTemplate}
@@ -59,49 +50,51 @@ class CreateForm extends React.Component {
           console.log(values);
         }}
       >
-        <Form>
-          <label>
-            Document Name:
-            <Field type="text" name="document_name" />
-            {errors.document_name && touched.document_name ? (
-              <div>{errors.document_name}</div>
-            ) : null}
-          </label>
-          <label>
-            Document URL:
-            <Field type="url" name="document_url" />
-          </label>
-          <label>
-            Startup Journey Stage:
-            <Select
-              id="stage"
-              value={values.stage}
-              onChange={handleChange}
-              onBlur={setFieldTouched}
-              options={STAGES_AS_OPTIONS} />
-          </label>
-          <label>
-            Valid for All States?
-            <Field
-              name="all_states"
-              type="checkbox"
-              checked={values.all_states} />
-          </label>
-          <label >
-            State
-            <Select
-              id="states"
-              isDisabled={values.all_states}
-              isMulti={true}
-              options={STATES_AS_OPTIONS}
-              onChange={handleChange}
-              onBlur={setFieldTouched}
-              value={values.states} />
-          </label>
-          <button type="submit" disabled={isSubmitting}>
-            Submit
-          </button>
-        </Form>
+        {({ errors, touched, handleChange, setFieldTouched, isSubmitting, values }) => (
+          <Form>
+            <label>
+              Document Name:
+              <Field type="text" name="document_name" />
+              {errors.document_name && touched.document_name ? (
+                <div>{errors.document_name}</div>
+              ) : null}
+            </label>
+            <label>
+              Document URL:
+              <Field type="url" name="document_url" />
+            </label>
+            <label>
+              Startup Journey Stage:
+              <Select
+                id="stage"
+                value={values.stage}
+                onChange={handleChange}
+                onBlur={setFieldTouched}
+                options={STAGES_AS_OPTIONS} />
+            </label>
+            <label>
+              Valid for All States?
+              <Field
+                name="all_states"
+                type="checkbox"
+                checked={values.all_states} />
+            </label>
+            <label >
+              State
+              <Select
+                id="states"
+                isDisabled={values.all_states}
+                isMulti={true}
+                options={STATES_AS_OPTIONS}
+                onChange={handleChange}
+                onBlur={setFieldTouched}
+                value={values.states} />
+            </label>
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
+          </Form>
+        )}
       </Formik>
     )
   }
