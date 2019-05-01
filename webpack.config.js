@@ -14,6 +14,7 @@ module.exports = () => {
   
   return {
     mode: 'development',
+    devtool: 'eval-source-map',
     module: {
       rules: [
         {
@@ -25,6 +26,9 @@ module.exports = () => {
         }
       ]
     },
+    output: {
+      sourceMapFilename: 'dist/src.js.map'
+    }
     plugins: [
       /* Supply env vars to react scripts */
       new webpack.DefinePlugin(envKeys),
