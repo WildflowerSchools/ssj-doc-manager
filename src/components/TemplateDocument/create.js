@@ -7,8 +7,8 @@ import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
 import * as ROUTES from '../../constants/routes'
-import STATES_AS_OPTIONS from '../../constants/states'
-import STAGES_AS_OPTIONS from '../../constants/stages'
+import { STATES_AS_OPTIONS } from '../../constants/states'
+import { STAGES_AS_OPTIONS } from '../../constants/stages'
 
 class TemplateCreateBase extends React.Component {
   constructor(props) {
@@ -38,6 +38,8 @@ class TemplateCreateBase extends React.Component {
   }
   
   render() {
+    console.log(STATES_AS_OPTIONS)
+    
     return (
       <div>
         <h3>Create Template Document</h3>
