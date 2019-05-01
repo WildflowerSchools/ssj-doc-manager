@@ -50,7 +50,7 @@ class TemplateListBase extends React.Component {
         <Link to={ROUTES.CREATE_TEMPLATE}>Add New</Link>
         <ul className="alternate">{lis}</ul> 
       </div>
-    );
+    )
   }
 }
 
