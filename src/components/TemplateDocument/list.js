@@ -47,7 +47,7 @@ class TemplateListBase extends React.Component {
     return (
       <div>
         <h3>Templates</h3>
-        <Link to={ROUTES.CREATE_TEMPLATE}>Add New</Link>
+        <Link to={ROUTES.ADMIN_CREATE_TEMPLATE}>Add New</Link>
         <ul className="alternate">{lis}</ul> 
       </div>
     )

@@ -16,7 +16,7 @@ const RouteAuthLanding = () => (
   <AuthUserContext.Consumer>
     {authUser =>
       authUser ? (
-        <Route path={[ROUTES.HOME, ROUTES.LANDING]} component={HomePage} />
+        <Route exact path={[ROUTES.HOME, ROUTES.LANDING]} component={HomePage} />
       ) : (
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
       )
@@ -35,7 +35,9 @@ const AppBase = () => (
       
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
       
-      <Route path={ROUTES.ADMIN} component={AdminPage} />
+      <Route exact path={ROUTES.ADMIN} component={AdminPage} />
+      <Route exact path={ROUTES.ADMIN_CREATE_TEMPLATE} component={} />
+      
     </div>
   </Router>
 )

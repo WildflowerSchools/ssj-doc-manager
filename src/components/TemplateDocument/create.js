@@ -81,5 +81,5 @@ class TemplateCreateBase extends React.Component {
   }
 }
 
-const TemplateCreate = withFirebase(withAuthorization(isAdmin)(TemplateCreateBase))
-export default TemplateCreate
+const TemplateCreatePage = withFirebase(withAuthorization(isAdmin)(TemplateCreateBase))
+export default TemplateCreatePage

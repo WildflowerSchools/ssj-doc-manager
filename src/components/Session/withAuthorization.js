@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom'
 
 import AuthUserContext from './context'
 import { withFirebase } from '../Firebase'
+
+import * as ROLES from '../../constants/roles'
 import * as ROUTES from '../../constants/routes'
 
 const withAuthorization = condition => Component => {
