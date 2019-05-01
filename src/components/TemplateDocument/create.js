@@ -62,7 +62,7 @@ class TemplateCreateBase extends React.Component {
             <input
               name="all_states"
               type="checkbox"
-              checked={this.state.newTemplate.all_states} />
+              defaultChecked={this.state.newTemplate.all_states} />
           </label>
           <label disabled={this.state.newTemplate.all_states} >
             State
@@ -73,7 +73,6 @@ class TemplateCreateBase extends React.Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <button>Create</button>
       </div>
     )
   }
