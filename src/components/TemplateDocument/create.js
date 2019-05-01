@@ -1,6 +1,7 @@
 import React from 'react'
-import Select from 'react-select';
-import { Formik, Form, Field } from 'formik';
+import Select from 'react-select'
+import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 import { collectionData } from 'rxfire/firestore'
 
 import { withAuthorization, isAdmin } from '../Session'
@@ -41,18 +42,13 @@ class CreateForm extends React.Component {
   
   render() {
     const {
-      values,
-      touched,
-      dirty,
       errors,
+      touched,
       handleChange,
-      handleBlur,
-      handleSubmit,
-      handleReset,
-      setFieldValue,
       setFieldTouched,
       isSubmitting,
-    } = props;
+      values
+    } = this.props;
 
     return (
       <Formik
@@ -63,49 +59,49 @@ class CreateForm extends React.Component {
           console.log(values);
         }}
       >
-        {({ errors, touched, handleChange, setFieldTouched }) => (
-          <Form>
-            <label>
-              Document Name:
-              <Field type="text" name="document_name" />
-              {errors.document_name && touched.document_name ? (
-                <div>{errors.document_name}</div>
-              ) : null}
-            </label>
-            <label>
-              Document URL:
-              <input type="url" name="document_url" />
-            </label>
-            <label>
-              Startup Journey Stage:
-              <Select
-                value={this.state.newTemplate.stage}
-                onChange={handleChange}
-                onBlur={setFieldTouched}
-                options={STAGES_AS_OPTIONS} />
-            </label>
-            <label>
-              Valid for All States?
-              <input
-                name="all_states"
-                type="checkbox"
-                defaultChecked={this.state.newTemplate.all_states} />
-            </label>
-            <label >
-              State
-              <Select
-                isDisabled={this.state.newTemplate.all_states}
-                isMulti={true}
-                options={STATES_AS_OPTIONS}
-                onChange={handleChange}
-                onBlur={setFieldTouched}
-                value={this.newTemplate.states} />
-            </label>
-            <button type="submit" disabled={isSubmitting}>
-              Submit
-            </button>
-          </form>
-        )}
+        <Form>
+          <label>
+            Document Name:
+            <Field type="text" name="document_name" />
+            {errors.document_name && touched.document_name ? (
+              <div>{errors.document_name}</div>
+            ) : null}
+          </label>
+          <label>
+            Document URL:
+            <Field type="url" name="document_url" />
+          </label>
+          <label>
+            Startup Journey Stage:
+            <Select
+              id="stage"
+              value={values.stage}
+              onChange={handleChange}
+              onBlur={setFieldTouched}
+              options={STAGES_AS_OPTIONS} />
+          </label>
+          <label>
+            Valid for All States?
+            <Field
+              name="all_states"
+              type="checkbox"
+              checked={values.all_states} />
+          </label>
+          <label >
+            State
+            <Select
+              id="states"
+              isDisabled={values.all_states}
+              isMulti={true}
+              options={STATES_AS_OPTIONS}
+              onChange={handleChange}
+              onBlur={setFieldTouched}
+              value={values.states} />
+          </label>
+          <button type="submit" disabled={isSubmitting}>
+            Submit
+          </button>
+        </Form>
       </Formik>
     )
   }
@@ -116,14 +112,7 @@ class TemplateCreateBase extends React.Component {
     super(props)
     
     this.state = {
-      error: null,
-      newTemplate: {
-        document_name: '',
-        document_url: '',
-        stage: '',
-        all_states: false,
-        states: []
-      }
+      error: null
     }
   }
   
@@ -141,7 +130,7 @@ class TemplateCreateBase extends React.Component {
     return (
       <div>
         <h3>Create Template Document</h3>
-        
+        <CreateForm />
       </div>
     )
   }
