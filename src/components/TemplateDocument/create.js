@@ -44,16 +44,16 @@ class TemplateCreateBase extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             Document Name:
-            <input type="text" value={this.state.newTemplate.document_name} />
+            <input type="text" defaultValue={this.state.newTemplate.document_name} />
           </label>
           <label>
             Document URL:
-            <input type="text" value={this.state.newTemplate.document_url} />
+            <input type="text" defaultValue={this.state.newTemplate.document_url} />
           </label>
           <label>
             Startup Journey Stage:
-            <select
-              value={this.state.newTemplate.stage}
+            <Select
+              defaultValue={this.state.newTemplate.stage}
               options={STAGES_AS_OPTIONS}
               isMulti={true} />
           </label>
@@ -66,8 +66,8 @@ class TemplateCreateBase extends React.Component {
           </label>
           <label disabled={this.state.newTemplate.all_states} >
             State
-            <select
-              value={this.state.newTemplate.states}
+            <Select
+              defaultValue={this.state.newTemplate.states}
               options={STATES_AS_OPTIONS}
               isMulti={true} />
           </label>
@@ -75,7 +75,7 @@ class TemplateCreateBase extends React.Component {
         </form>
         <button>Create</button>
       </div>
-    );
+    )
   }
 }
 
