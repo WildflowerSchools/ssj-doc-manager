@@ -54,7 +54,8 @@ class TemplateCreateBase extends React.Component {
             Startup Journey Stage:
             <select
               value={this.state.newTemplate.stage}
-              options={STAGES_AS_OPTIONS} />
+              options={STAGES_AS_OPTIONS}
+              isMulti={true} />
           </label>
           <label>
             Valid for All States?

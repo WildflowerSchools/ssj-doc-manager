@@ -5,6 +5,7 @@ const webpack = require('webpack');
 
 module.exports = () => {
   const env = dotenv.config().parsed;
+  const mode = env['ENVIRONMENT'] || 'development'
   
   // reduce it to a nice object, the same as before
   const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -12,8 +13,9 @@ module.exports = () => {
     return prev;
   }, {});
   
-  let conf = {
-    mode: 'development',
+  return {
+    mode: mode,
+    devtool: mode === 'production' ? false : 'eval-source-map',
     module: {
       rules: [
         {
@@ -36,8 +38,4 @@ module.exports = () => {
       ])
     ]
   }
-  
-  let production = options.mode === 'production'
-	conf.devtool = production ? false : 'eval-source-map'
-	return conf
 }
