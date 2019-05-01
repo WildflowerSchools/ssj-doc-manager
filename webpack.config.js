@@ -28,7 +28,7 @@ module.exports = () => {
     },
     output: {
       sourceMapFilename: 'dist/src.js.map'
-    }
+    },
     plugins: [
       /* Supply env vars to react scripts */
       new webpack.DefinePlugin(envKeys),
