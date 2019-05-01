@@ -31,7 +31,6 @@ class TemplateCreateBase extends React.Component {
       this.state.template
     )
     .then(() => {
-      console.log("Created template document!")
       this.setState({ error: null })
       this.props.history.push(ROUTES.ADMIN)
     })
@@ -56,8 +55,7 @@ class TemplateCreateBase extends React.Component {
             Startup Journey Stage:
             <Select
               defaultValue={this.state.newTemplate.stage}
-              options={STAGES_AS_OPTIONS}
-              isMulti={true} />
+              options={STAGES_AS_OPTIONS} />
           </label>
           <label>
             Valid for All States?
@@ -66,9 +64,10 @@ class TemplateCreateBase extends React.Component {
               type="checkbox"
               defaultChecked={this.state.newTemplate.all_states} />
           </label>
-          <label disabled={this.state.newTemplate.all_states} >
+          <label >
             State
             <Select
+              isDisabled={this.state.newTemplate.all_states}
               defaultValue={this.state.newTemplate.states}
               options={STATES_AS_OPTIONS}
               isMulti={true} />
