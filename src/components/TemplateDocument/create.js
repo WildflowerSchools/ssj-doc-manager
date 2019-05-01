@@ -11,7 +11,61 @@ import * as ROUTES from '../../constants/routes'
 import { STATES_AS_OPTIONS } from '../../constants/states'
 import { STAGES_AS_OPTIONS } from '../../constants/stages'
 
+const TemplateDocumentSchema = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  lastName: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  email: Yup.string()
+    .email('Invalid email')
+    .required('Required'),
+});
+
 class CreateForm extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Document Name:
+          <input type="text" defaultValue={this.state.newTemplate.document_name} />
+        </label>
+        <label>
+          Document URL:
+          <input type="text" value={this.state.newTemplate.document_url} />
+        </label>
+        <label>
+          Startup Journey Stage:
+          <Select
+            defaultValue={this.state.newTemplate.stage}
+            options={STAGES_AS_OPTIONS} />
+        </label>
+        <label>
+          Valid for All States?
+          <input
+            name="all_states"
+            type="checkbox"
+            defaultChecked={this.state.newTemplate.all_states} />
+        </label>
+        <label >
+          State
+          <Select
+            isDisabled={this.state.newTemplate.all_states}
+            defaultValue={this.state.newTemplate.states}
+            options={STATES_AS_OPTIONS}
+            isMulti={true} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    )
+  }
 }
 
 class TemplateCreateBase extends React.Component {
@@ -41,43 +95,10 @@ class TemplateCreateBase extends React.Component {
   }
   
   render() {
-    console.log(STATES_AS_OPTIONS)
-    
     return (
       <div>
         <h3>Create Template Document</h3>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Document Name:
-            <input type="text" defaultValue={this.state.newTemplate.document_name} />
-          </label>
-          <label>
-            Document URL:
-            <input type="text" value={this.state.newTemplate.document_url} />
-          </label>
-          <label>
-            Startup Journey Stage:
-            <Select
-              defaultValue={this.state.newTemplate.stage}
-              options={STAGES_AS_OPTIONS} />
-          </label>
-          <label>
-            Valid for All States?
-            <input
-              name="all_states"
-              type="checkbox"
-              defaultChecked={this.state.newTemplate.all_states} />
-          </label>
-          <label >
-            State
-            <Select
-              isDisabled={this.state.newTemplate.all_states}
-              defaultValue={this.state.newTemplate.states}
-              options={STATES_AS_OPTIONS}
-              isMulti={true} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        
       </div>
     )
   }
