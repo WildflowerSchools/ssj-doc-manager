@@ -6,8 +6,7 @@ import { UserDocumentList } from '../UserDocument'
 
 const HomePageBase = () => (
   <div>
-    <h1>Home Page</h1>
-    <p>The Home Page is accessible by every signed in user.</p>
+    <h1>My Documents</h1>
     <UserDocumentList />
   </div>
 );

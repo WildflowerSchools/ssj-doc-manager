@@ -7,6 +7,7 @@ import { withAuthorization } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
+import * as ROUTES from '../../constants/routes'
 
 class TemplateListBase extends React.Component {
   constructor(props) {
