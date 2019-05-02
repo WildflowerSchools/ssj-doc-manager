@@ -19,10 +19,10 @@ class EditForm extends React.Component {
   }
   
   componentDidMount() {
-    this.props.firebase.template_document.once('value')
+    this.props.firebase.template_document(this.id).once('value')
     .then(function(template) {
       this.setState({ template: template   })
-    }
+    })
   }
           
   onSuccess() {
@@ -35,7 +35,7 @@ class EditForm extends React.Component {
   
   render() {
     return (
-      <TemplateForm mode="edit" template={this.state.template} onSuccess={onSuccess} onFailure={onFailure} />
+      <TemplateForm mode="edit" template={this.state.template} onSuccess={this.onSuccess} onFailure={this.onFailure} />
     )
   }
 }

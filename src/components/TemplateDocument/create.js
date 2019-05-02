@@ -32,7 +32,7 @@ class CreateForm extends React.Component {
   
   render() {
     return (
-      <TemplateForm mode="create" template={this.newTemplate} onSuccess={onSuccess} onFailure={onFailure} />
+      <TemplateForm mode="create" template={this.newTemplate} onSuccess={this.onSuccess} onFailure={this.onFailure} />
     )
   }
 }
