@@ -6,6 +6,7 @@ import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
 
+
 class TemplateEditBase extends React.Component {
   constructor(props) {
     super(props)

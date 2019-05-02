@@ -5,27 +5,49 @@ import PropTypes from 'prop-types'
 import { STATES_AS_OPTIONS } from '../../constants/states'
 import { STAGES_AS_OPTIONS } from '../../constants/stages'
 
+
+const TemplateDocumentSchema = Yup.object().shape({
+  document_name: Yup.string("Enter the name of the document")
+    .required('Name is required'),
+  document_url: Yup.string()
+    .url('Document URL is invalid')
+    .required('Document URL is required'),
+  stage: Yup.string()
+    .ensure(),
+  all_states: Yup.boolean(),
+  states: Yup.array()
+    .of(Yup.string())
+})
+
 class TemplateForm extends React.Component {
   render() {
+    
+    const { mode, template, onSuccess, onFailure } = this.props
+    
     return (
       <Formik
-        initialValues={this.newTemplate}
+        initialValues={template}
         validationSchema={TemplateDocumentSchema}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false)
           
-          this.props.firebase.template_document().add(
+          let actionRef = mode === 'create' ? .doc('DC')
+          
+          this.props.firebase.template_documents().add(
             values
           )
           .then(() => {
             actions.setErrors(null)
             actions.setSubmitting(false)
             
-            this.props.history.push(ROUTES.ADMIN)
+            onSuccess()
+            //this.props.history.push(ROUTES.ADMIN)
           })
          .catch(error => {
             actions.setErrors(error)
             actions.setSubmitting(false)
+            
+            onFailure()
           })
         }}
       >
@@ -96,8 +118,9 @@ class TemplateForm extends React.Component {
 }
 
 TemplateForm.propTypes = {
+  template: PropTypes.object,
   mode: PropTypes.oneOf(['create', 'edit']).isRequired,
-  onSuccess: PropType.func.isRequired
+  onSuccess: PropType.func.isRequired,
   onFailure: PropType.func
 };
 
