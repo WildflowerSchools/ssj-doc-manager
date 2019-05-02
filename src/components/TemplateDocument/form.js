@@ -38,29 +38,27 @@ class TemplateForm extends React.Component {
           
           let actionRef = null
           if (mode === 'create') {
-            actionRef = this.props.firebase.template_documents().add
+            actionRef = this.props.firebase.template_documents().add(values)
           } else if (mode === 'edit') {
-            actionRef = this.props.firebase.template_document(template.id).update
+            actionRef = this.props.firebase.template_document(template.id).update(values)
           } else {
             actions.setErrors("Internal error: Mode should be 'edit' or 'create'")
             onFailure("Internal error")
             return
           }
           
-          actionRef(
-            values
-          )
+          actionRef
           .then(() => {
             actions.setErrors(null)
             actions.setSubmitting(false)
             
             onSuccess()
           })
-         .catch(error => {
+          .catch(error => {
             actions.setErrors(error)
             actions.setSubmitting(false)
             
-            onFailure()
+            onFailure(error)
           })
         }}
       >

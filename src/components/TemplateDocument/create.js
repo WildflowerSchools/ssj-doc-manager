@@ -13,6 +13,8 @@ class CreateForm extends React.Component {
   constructor(props) {
     super(props)
     
+    this.props = props
+    
     this.newTemplate = {
       document_name: '',
       document_url: '',

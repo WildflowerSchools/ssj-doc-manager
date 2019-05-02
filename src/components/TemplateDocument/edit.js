@@ -12,6 +12,8 @@ class EditForm extends React.Component {
   constructor(props) {
     super(props)
     
+    this.props = props
+    
     this.id = props.match.id
     this.state = {
       template: null
