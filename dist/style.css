@@ -79,7 +79,7 @@ form label {
   display: block;
 }
 
-form label > * {
+form label > *:first-child {
   margin-top: 5px;
 }
 

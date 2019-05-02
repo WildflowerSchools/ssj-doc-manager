@@ -18,12 +18,20 @@ const TemplateDocumentSchema = Yup.object().shape({
   document_url: Yup.string()
     .url('Document URL is invalid')
     .required('Document URL is required'),
-  stage: Yup.string()
-    .ensure(),
+  stage: Yup.array()
+    .max(1)
+    .of(
+      Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      })),
   all_states: Yup.boolean(),
   states: Yup.array()
-    .of(Yup.string()
-        .ensure())
+    .of(
+      Yup.object().shape({
+        label: Yup.string().required(),
+        value: Yup.string().required(),
+      }))
 })
 
 class CreateForm extends React.Component {
@@ -67,7 +75,7 @@ class CreateForm extends React.Component {
                 id="td_stage"
                 name="stage"
                 value={values.stage}
-                onChange={(v) => {console.log("IN: " + v); handleChange('stage', v);}}
+                onChange={(v) => {console.log("IN: " + JSON.stringify(v)); handleChange('stage', v);}}
                 onBlur={setFieldTouched}
                 options={STAGES_AS_OPTIONS} />
               <ErrorMessage name="stage" className="error" component="div" />
