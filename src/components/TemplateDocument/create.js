@@ -47,7 +47,7 @@ class CreateForm extends React.Component {
         onSubmit={(values, actions) => {
           actions.setSubmitting(false)
           
-          this.props.firebase.template_document().set(
+          this.props.firebase.template_document().push(
             values
           )
           .then(() => {
@@ -127,8 +127,6 @@ class CreateForm extends React.Component {
     )
   }
 }
-
-
 
 const TemplateCreateBase = ({ firebase, history }) => (
   <div>
