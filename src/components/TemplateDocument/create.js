@@ -1,6 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
-import { Formik, Form, Field } from 'formik'
+import { ErrorMessage, Field, Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { collectionData } from 'rxfire/firestore'
 
@@ -55,13 +55,12 @@ class CreateForm extends React.Component {
             <label>
               Document Name:
               <Field type="text" name="document_name" />
-              {errors.document_name && touched.document_name ? (
-                <div>{errors.document_name}</div>
-              ) : null}
+              <ErrorMessage name="document_name" component="div" />
             </label>
             <label>
               Document URL:
               <Field type="url" name="document_url" />
+              <ErrorMessage name="document_url" component="div" />
             </label>
             <label>
               Startup Journey Stage:
@@ -71,6 +70,7 @@ class CreateForm extends React.Component {
                 onChange={handleChange}
                 onBlur={setFieldTouched}
                 options={STAGES_AS_OPTIONS} />
+              <ErrorMessage name="stage" component="div" />
             </label>
             <label>
               Valid for All States?
@@ -78,6 +78,7 @@ class CreateForm extends React.Component {
                 name="all_states"
                 type="checkbox"
                 checked={values.all_states} />
+              <ErrorMessage name="all_states" component="div" />
             </label>
             <label >
               State
@@ -89,6 +90,7 @@ class CreateForm extends React.Component {
                 onChange={handleChange}
                 onBlur={setFieldTouched}
                 value={values.states} />
+              <ErrorMessage name="states" component="div" />
             </label>
             <button type="submit" disabled={isSubmitting}>
               Submit
