@@ -5,13 +5,12 @@ import * as Yup from 'yup'
 import { collectionData } from 'rxfire/firestore'
 
 import { withAuthorization, isAdmin } from '../Session'
-import { withFirebase } from '../Firebase'
 import { withRouter } from 'react-router-dom'
 
-import * as ROLES from '../../constants/roles'
+import TemplateForm form './form'
+
 import * as ROUTES from '../../constants/routes'
-import { STATES_AS_OPTIONS } from '../../constants/states'
-import { STAGES_AS_OPTIONS } from '../../constants/stages'
+
 
 class CreateForm extends React.Component {
   constructor(props) {
@@ -26,19 +25,27 @@ class CreateForm extends React.Component {
     }
   }
   
+  onSuccess() {
+    this.props.history.push(ROUTES.ADMIN)
+  }
+  
+  onFailure(error) {
+    console.log(error)
+  }
+  
   render() {
     return (
-      
+      <TemplateForm mode="create" template={this.newTemplate} onSuccess={onSuccess} onFailure={onFailure}</TemplateForm>/>
     )
   }
 }
 
-const TemplateCreateBase = ({ firebase, history }) => (
+const TemplateCreateBase = ({ history }) => (
   <div>
     <h3>Create Template Document</h3>
-    <CreateForm firebase={firebase} history={history} />
+    <CreateForm history={history} />
   </div>
 )
 
-const TemplateCreatePage = withRouter(withFirebase(withAuthorization(isAdmin)(TemplateCreateBase)))
+const TemplateCreatePage = withRouter(withAuthorization(isAdmin)(TemplateCreateBase))
 export default TemplateCreatePage

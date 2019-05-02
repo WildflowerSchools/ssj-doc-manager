@@ -2,6 +2,8 @@ import React from 'react'
 import Select from 'react-select';
 import PropTypes from 'prop-types'
 
+import { withFirebase } from '../Firebase'
+
 import { STATES_AS_OPTIONS } from '../../constants/states'
 import { STAGES_AS_OPTIONS } from '../../constants/stages'
 
@@ -31,9 +33,18 @@ class TemplateForm extends React.Component {
         onSubmit={(values, actions) => {
           actions.setSubmitting(false)
           
-          let actionRef = mode === 'create' ? .doc('DC')
+          let actionRef = null
+          if (mode === 'create') {
+            actionRef = this.props.firebase.template_documents().add
+          } else if (mode === 'edit') {
+            actionRef = this.props.firebase.template_document(template.id).update
+          } else {
+            actions.setErrors("Internal error: Mode should be 'edit' or 'create'")
+            onFailure("Internal error")
+            return
+          }
           
-          this.props.firebase.template_documents().add(
+          actionRef(
             values
           )
           .then(() => {
@@ -124,4 +135,4 @@ TemplateForm.propTypes = {
   onFailure: PropType.func
 };
 
-export default TemplateForm
+export default withFirebase(TemplateForm)
