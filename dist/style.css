@@ -79,6 +79,10 @@ form label {
   display: block;
 }
 
+form label > * {
+  margin-top: 5px;
+}
+
 form .error {
   color: red;
 }
