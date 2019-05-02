@@ -71,13 +71,17 @@ class CreateForm extends React.Component {
             </label>
             <label htmlFor="std_tage">
               Startup Journey Stage:
-              <Select
-                id="td_stage"
+              <Field 
                 name="stage"
-                value={values.stage}
-                onChange={(v) => {console.log("IN: " + JSON.stringify(v)); handleChange('stage', v);}}
-                onBlur={setFieldTouched}
-                options={STAGES_AS_OPTIONS} />
+                component={({field, form}) =>
+                <Select
+                  id="td_stage"
+                  isMulti={false}
+                  value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
+                  onChange{(option) => form.setFieldValue(field.name, option.value)}
+                  onBlur={field.onBlur}
+                  options={STAGES_AS_OPTIONS} />
+              />
               <ErrorMessage name="stage" className="error" component="div" />
             </label>
             <label htmlFor="td_all_states">

@@ -6,7 +6,7 @@ const webpack = require('webpack')
 module.exports = () => {
   const env = dotenv.config().parsed;
   const mode = env['ENVIRONMENT'] || 'development'
-  const sourceMap = false // 'eval-source-map'
+  const sourceMap = 'eval-source-map'
   
   // reduce it to a nice object, the same as before
   const envKeys = Object.keys(env).reduce((prev, next) => {
