@@ -5,7 +5,7 @@ import { withAuthorization, isAdmin } from '../Session'
 import { withFirebase } from '../Firebase'
 import TemplateForm from './form'
 
-import * as ROLES from '../../constants/roles'
+import * as ROUTES from '../../constants/routes'
 
 
 class EditForm extends React.Component {
@@ -14,7 +14,7 @@ class EditForm extends React.Component {
     
     this.history = props.history
     
-    this.id = props.match.id
+    this.id = props.id
     this.state = {
       template: null
     }
@@ -27,7 +27,7 @@ class EditForm extends React.Component {
     })
   }
           
-  onSuccess = () => {
+  onSuccess = (id) => {
     this.history.push(ROUTES.ADMIN)
   }
   
@@ -42,7 +42,7 @@ class EditForm extends React.Component {
   }
 }
   
-const TemplateEditBase = ({ id, firebase, history }) => (
+const TemplateEditBase = ({ id, firebase, history, match }) => (
   <div>
     <h3>Edit Template Document</h3>
     <EditForm id={id} firebase={firebase} history={history} />

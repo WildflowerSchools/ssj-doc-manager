@@ -24,7 +24,7 @@ class CreateForm extends React.Component {
     }
   }
   
-  onSuccess = () => {
+  onSuccess = (id) => {
     this.history.push(ROUTES.ADMIN)
   }
   
