@@ -32,6 +32,7 @@ module.exports = () => {
       rules: [
         {
           test: /\.js$/,
+          include: /src/,
           exclude: /node_modules/,
           loader: "babel-loader",
           query: {
