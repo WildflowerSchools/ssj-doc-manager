@@ -17,7 +17,7 @@ const TemplateDocumentSchema = Yup.object().shape({
     .required('Name is required'),
   document_url: Yup.string()
     .url('Document URL is invalid')
-    .required('Required'),
+    .required('Document URL is required'),
   stage: Yup.string()
     .ensure(),
   all_states: Yup.boolean(),
@@ -44,24 +44,24 @@ class CreateForm extends React.Component {
       <Formik
         initialValues={this.newTemplate}
         validationSchema={TemplateDocumentSchema}
-        onSubmit={values => {
-          // same shape as initial values
-          console.log(values);
+        onSubmit={(values, actions) => {
+          actions.setSubmitting(false)
+          console.log(values)
         }}
       >
         {({ errors, touched, handleChange, setFieldTouched, isSubmitting, values }) => (
           <Form>
-            <label for="document_name">
+            <label htmlFor="document_name">
               Document Name:
               <Field id="document_name" type="text" name="document_name" />
               <ErrorMessage name="document_name" className="error" component="div" />
             </label>
-            <label for="document_url">
+            <label htmlFor="document_url">
               Document URL:
               <Field id="document_url" type="url" name="document_url" />
               <ErrorMessage name="document_url" className="error" component="div" />
             </label>
-            <label for="stage">
+            <label htmlFor="stage">
               Startup Journey Stage:
               <Select
                 id="stage"
@@ -71,7 +71,7 @@ class CreateForm extends React.Component {
                 options={STAGES_AS_OPTIONS} />
               <ErrorMessage name="stage" className="error" component="div" />
             </label>
-            <label for="all_states">
+            <label htmlFor="all_states">
               Valid for All States?
               <Field
                 id="all_states"
@@ -80,7 +80,7 @@ class CreateForm extends React.Component {
                 checked={values.all_states} />
               <ErrorMessage name="all_states" className="error" component="div" />
             </label>
-            <label for="states">
+            <label htmlFor="states">
               State
               <Select
                 id="states"
