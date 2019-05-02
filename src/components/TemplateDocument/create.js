@@ -52,17 +52,17 @@ class CreateForm extends React.Component {
       >
         {({ errors, touched, handleChange, setFieldTouched, isSubmitting, values }) => (
           <Form>
-            <label>
+            <label for="document_name">
               Document Name:
-              <Field type="text" name="document_name" />
+              <Field id="document_name" type="text" name="document_name" />
               <ErrorMessage name="document_name" className="error" component="div" />
             </label>
-            <label>
+            <label for="document_url">
               Document URL:
-              <Field type="url" name="document_url" />
+              <Field id="document_url" type="url" name="document_url" />
               <ErrorMessage name="document_url" className="error" component="div" />
             </label>
-            <label>
+            <label for="stage">
               Startup Journey Stage:
               <Select
                 id="stage"
@@ -72,15 +72,16 @@ class CreateForm extends React.Component {
                 options={STAGES_AS_OPTIONS} />
               <ErrorMessage name="stage" className="error" component="div" />
             </label>
-            <label>
+            <label for="all_states">
               Valid for All States?
               <Field
+                id="all_states"
                 name="all_states"
                 type="checkbox"
                 checked={values.all_states} />
               <ErrorMessage name="all_states" className="error" component="div" />
             </label>
-            <label >
+            <label for="states">
               State
               <Select
                 id="states"
