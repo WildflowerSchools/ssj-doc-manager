@@ -1,6 +1,6 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const dotenv = require('dotenv');
-const webpack = require('webpack');
+const dotenv = require('dotenv')
+const webpack = require('webpack')
 
 
 module.exports = () => {
@@ -16,12 +16,17 @@ module.exports = () => {
   return {
     mode: mode,
     devtool: mode === 'production' ? false : 'eval-source-map',
-    devServer: {
-      /*port: 80,
-      public: 'messy-cart.glitch.me'*/
-      hot: true,
-      inline: true
-    },
+    // devServer: {
+    //   /*port: 80,
+    //   public: 'messy-cart.glitch.me'*/
+    //   hot: true,
+    //   inline: true
+    // },
+    // output: {
+    //     filename: '[name].js',
+    //     publicPath: 'http://localhost:3000/assets',
+    //     path: '/',
+    // },
     module: {
       rules: [
         {
