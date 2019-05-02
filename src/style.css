@@ -98,3 +98,11 @@ ul.documents {
 ul.documents li {
   padding: 10px;
 }
+
+ul.documents li > *:not(:first-child) {
+  margin-top: 10px;
+}
+
+ul.documents li > *:last-child {
+  margin-bottom: 10px;
+}

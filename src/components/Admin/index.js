@@ -8,8 +8,7 @@ import * as ROLES from '../../constants/roles'
 
 const AdminPageBase = () => (
   <div>
-    <h1>Admin Page</h1>
-    <p>The Admin Page is only accessible by the admins.</p>
+    <h1>Document Collection</h1>
     <TemplateList />
   </div>
 );

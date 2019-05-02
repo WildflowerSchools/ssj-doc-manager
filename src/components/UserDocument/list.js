@@ -28,7 +28,7 @@ class UserDocumentListBase extends React.Component {
       }
       
       return (
-        <li className="document" key={c.id}>
+        <li key={c.id}>
           <div><b>Document:</b> {doc_link}</div>
           <div>
             <span><b>Stage:</b> {c.stage || ''}</span>
@@ -41,7 +41,7 @@ class UserDocumentListBase extends React.Component {
     return (
       <div>
         <h3>My Documents</h3>
-        <ul className="alternate">{lis}</ul> 
+        <ul className="documents alternate">{lis}</ul> 
       </div>
     );
   }

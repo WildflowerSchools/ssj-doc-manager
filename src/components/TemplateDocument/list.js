@@ -35,7 +35,7 @@ class TemplateListBase extends React.Component {
       }
       
       return (
-        <li className="documents" key={c.id}>
+        <li key={c.id}>
           <div><b>Document:</b> {doc_link}</div>
           <div>
             <span><b>Stage:</b> {c.stage || ''}</span>
@@ -50,7 +50,7 @@ class TemplateListBase extends React.Component {
       <div>
         <h3>Templates</h3>
         <Link to={ROUTES.ADMIN_CREATE_TEMPLATE}>Add New</Link>
-        <ul className="alternate">{lis}</ul> 
+        <ul className="documents alternate">{lis}</ul> 
       </div>
     )
   }
