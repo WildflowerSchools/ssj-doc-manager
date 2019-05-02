@@ -45,10 +45,23 @@ class CreateForm extends React.Component {
         validationSchema={TemplateDocumentSchema}
         onSubmit={(values, actions) => {
           actions.setSubmitting(false)
-          console.log(values)
+          
+          this.props.firebase.template_document().set(
+            values
+          )
+          .then(() => {
+            actions.setErrors(null);
+            actions.setSubmitting(false)
+            
+            this.props.history.push(ROUTES.ADMIN)
+          })
+         .catch(error => {
+            actions.setErrors(error);
+            actions.setSubmitting(false)
+          })
         }}
       >
-        {({ errors, touched, handleChange, setFieldTouched, setFieldValue, isSubmitting, values }) => (
+        {({ errors, touched, handleChange, setFieldTouched, setFieldValue, isSubmitting, isValid, values }) => (
           <Form>
             <label htmlFor="td_document_name">
               Document Name:
