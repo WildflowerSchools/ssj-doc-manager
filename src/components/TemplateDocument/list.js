@@ -41,7 +41,7 @@ class TemplateListBase extends React.Component {
             <span><b>Stage:</b> {c.stage || ''}</span>
             <span><b>States:</b> {states}</span>
           </div>
-          <button>Edit</button>
+          <button onClick={}>Edit</button>
         </li>
       )
     })
