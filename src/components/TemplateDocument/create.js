@@ -68,8 +68,9 @@ class CreateForm extends React.Component {
                   <Select
                     id="td_stage"
                     isMulti={false}
+                    isClearable={true}
                     value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
-                    onChange={(option) => form.setFieldValue(field.name, option.value)}
+                    onChange={(option) => form.setFieldValue(field.name, option.value )}
                     onBlur={field.onBlur}
                     options={STAGES_AS_OPTIONS} />
                 }
@@ -93,6 +94,7 @@ class CreateForm extends React.Component {
                   <Select
                     id="td_states"
                     isMulti={true}
+                    isClearable={true}
                     value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : ''}
                     onChange={(option) => form.setFieldValue(field.name, option.map((o) => o.value))}
                     onBlur={field.onBlur}
