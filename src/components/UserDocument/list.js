@@ -28,9 +28,11 @@ class UserDocumentListBase extends React.Component {
       }
       
       return (
-        <li key={c.id}>
-          <p><b>Stage:</b> {c.stage || 'unspecified'}</p>
-          <p><b>Doc Link:</b> {doc_link}</p>
+        <li className="document" key={c.id}>
+          <div><b>Document:</b> {doc_link}</div>
+          <div>
+            <span><b>Stage:</b> {c.stage || ''}</span>
+          </div>
           <button>Edit</button>
         </li>
       )

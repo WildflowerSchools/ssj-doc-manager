@@ -35,12 +35,12 @@ class TemplateListBase extends React.Component {
       }
       
       return (
-        <li key={c.id}>
-          <p><b>Document:</b> {doc_link}</p>
-          <p>
+        <li className="documents" key={c.id}>
+          <div><b>Document:</b> {doc_link}</div>
+          <div>
             <span><b>Stage:</b> {c.stage || ''}</span>
             <span><b>States:</b> {states}</span>
-          </p>
+          </div>
           <button>Edit</button>
         </li>
       )

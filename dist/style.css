@@ -86,3 +86,11 @@ form label > *:first-child {
 form .error {
   color: red;
 }
+
+span ~ span {
+    margin-left: 20px;
+}
+
+ul {
+  padding-left: 0;
+}
