@@ -12,7 +12,7 @@ class EditForm extends React.Component {
   constructor(props) {
     super(props)
     
-    this.props = props
+    this.history = props.history
     
     this.id = props.match.id
     this.state = {
@@ -27,11 +27,11 @@ class EditForm extends React.Component {
     })
   }
           
-  onSuccess() {
-    this.props.history.push(ROUTES.ADMIN)
+  onSuccess = () => {
+    this.history.push(ROUTES.ADMIN)
   }
   
-  onFailure(error) {
+  onFailure = (error) => {
     console.log(error)
   }
   

@@ -13,7 +13,7 @@ class CreateForm extends React.Component {
   constructor(props) {
     super(props)
     
-    this.props = props
+    this.history = props.history
     
     this.newTemplate = {
       document_name: '',
@@ -24,11 +24,11 @@ class CreateForm extends React.Component {
     }
   }
   
-  onSuccess() {
-    this.props.history.push(ROUTES.ADMIN)
+  onSuccess = () => {
+    this.history.push(ROUTES.ADMIN)
   }
   
-  onFailure(error) {
+  onFailure = (error) => {
     console.log(error)
   }
   
