@@ -18,13 +18,8 @@ const TemplateDocumentSchema = Yup.object().shape({
   document_url: Yup.string()
     .url('Document URL is invalid')
     .required('Document URL is required'),
-  stage: Yup.array()
-    .max(1)
-    .of(
-      Yup.object().shape({
-        label: Yup.string().required(),
-        value: Yup.string().required(),
-      })),
+  stage: Yup.string()
+    .ensure(),
   all_states: Yup.boolean(),
   states: Yup.array()
     .of(
@@ -74,14 +69,14 @@ class CreateForm extends React.Component {
               <Field 
                 name="stage"
                 component={({field, form}) =>
-                <Select
-                  id="td_stage"
-                  isMulti={false}
-                  value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
-                  onChange{(option) => form.setFieldValue(field.name, option.value)}
-                  onBlur={field.onBlur}
-                  options={STAGES_AS_OPTIONS} />
-              />
+                  <Select
+                    id="td_stage"
+                    isMulti={false}
+                    value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
+                    onChange{(option) => form.setFieldValue(field.name, option.value)}
+                    onBlur={field.onBlur}
+                    options={STAGES_AS_OPTIONS} />
+                }/>
               <ErrorMessage name="stage" className="error" component="div" />
             </label>
             <label htmlFor="td_all_states">
