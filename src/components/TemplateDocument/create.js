@@ -64,19 +64,20 @@ class CreateForm extends React.Component {
               <Field id="td_document_url" type="url" name="document_url" />
               <ErrorMessage name="document_url" className="error" component="div" />
             </label>
-            <label htmlFor="std_tage">
+            <label htmlFor="td_tage">
               Startup Journey Stage:
-              <Field 
+              <Field
                 name="stage"
                 component={({field, form}) =>
                   <Select
                     id="td_stage"
                     isMulti={false}
                     value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
-                    onChange{(option) => form.setFieldValue(field.name, option.value)}
+                    onChange={(option) => form.setFieldValue(field.name, option.value)}
                     onBlur={field.onBlur}
                     options={STAGES_AS_OPTIONS} />
-                }/>
+                }
+              />
               <ErrorMessage name="stage" className="error" component="div" />
             </label>
             <label htmlFor="td_all_states">
@@ -90,6 +91,18 @@ class CreateForm extends React.Component {
             </label>
             <label htmlFor="td_states">
               State
+              <Field
+                name="states"
+                component={({field, form}) =>
+                  <Select
+                    id="td_states"
+                    isMulti={true}
+                    value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => option.value === field.value) : ''}
+                    onChange={(option) => form.setFieldValue(field.name, option.value)}
+                    onBlur={field.onBlur}
+                    options={STATES_AS_OPTIONS} />
+                }
+              />
               <Select
                 id="td_states"
                 name="states"
