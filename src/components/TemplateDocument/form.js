@@ -21,6 +21,7 @@ const TemplateDocumentSchema = Yup.object().shape({
     .ensure(),
   all_states: Yup.boolean(),
   states: Yup.array()
+    .min(0)
     .of(Yup.string())
 })
 
@@ -31,41 +32,40 @@ class TemplateForm extends React.Component {
     
     return (
       <div>
-            {template !== null ? (
-      <Formik
-        initialValues={template}
-        validationSchema={TemplateDocumentSchema}
-        onSubmit={(values, actions) => {
-          actions.setSubmitting(false)
-          
-          let firebaseAction = null
-          if (mode === 'create') {
-            firebaseAction = this.props.firebase.template_documents().add(values)
-          } else if (mode === 'edit') {
-            firebaseAction = this.props.firebase.template_document(template.id).update(values)
-          } else {
-            actions.setErrors("Internal error: Mode should be 'edit' or 'create'")
-            onFailure("Internal error")
-            return
-          }
-          
-          firebaseAction
-          .then((docRef) => {
-            actions.setErrors(null)
-            actions.setSubmitting(false)
-            
-            onSuccess(docRef.id)
-          })
-          .catch(error => {
-            actions.setErrors(error)
-            actions.setSubmitting(false)
-            
-            onFailure(error)
-          })
-        }}
-      >
-        {({ errors, touched, handleChange, setFieldTouched, setFieldValue, isSubmitting, isValid, values }) => (
-              {console.log("Template: " + JSON.stringify(template))}
+        {template !== null ? (
+          <Formik
+            initialValues={template}
+            validationSchema={TemplateDocumentSchema}
+            onSubmit={(values, actions) => {
+              actions.setSubmitting(false)
+
+              let firebaseAction = null
+              if (mode === 'create') {
+                firebaseAction = this.props.firebase.template_documents().add(values)
+              } else if (mode === 'edit') {
+                firebaseAction = this.props.firebase.template_document(template.id).update(values)
+              } else {
+                actions.setErrors("Internal error: Mode should be 'edit' or 'create'")
+                onFailure("Internal error")
+                return
+              }
+
+              firebaseAction
+              .then((docRef) => {
+                actions.setErrors(null)
+                actions.setSubmitting(false)
+
+                onSuccess(docRef.id)
+              })
+              .catch(error => {
+                actions.setErrors(error)
+                actions.setSubmitting(false)
+
+                onFailure(error)
+              })
+            }}
+          >
+            {({ errors, touched, handleChange, setFieldTouched, setFieldValue, isSubmitting, isValid, values }) => (
               <Form>
                 <label htmlFor="td_document_name">
                   Document Name:
@@ -125,10 +125,12 @@ class TemplateForm extends React.Component {
                   Submit
                 </button>
               </Form>
-          </div>
+            )}
+          </Formik>
+        ) : (
+          <div>Loading...</div>
         )}
-      </Formik>
-          
+      </div>
     )
   }
 }
