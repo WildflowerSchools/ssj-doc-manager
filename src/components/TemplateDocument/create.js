@@ -55,12 +55,12 @@ class CreateForm extends React.Component {
             <label>
               Document Name:
               <Field type="text" name="document_name" />
-              <ErrorMessage name="document_name" component="div" />
+              <ErrorMessage name="document_name" className="error" component="div" />
             </label>
             <label>
               Document URL:
               <Field type="url" name="document_url" />
-              <ErrorMessage name="document_url" component="div" />
+              <ErrorMessage name="document_url" className="error" component="div" />
             </label>
             <label>
               Startup Journey Stage:
@@ -70,7 +70,7 @@ class CreateForm extends React.Component {
                 onChange={handleChange}
                 onBlur={setFieldTouched}
                 options={STAGES_AS_OPTIONS} />
-              <ErrorMessage name="stage" component="div" />
+              <ErrorMessage name="stage" className="error" component="div" />
             </label>
             <label>
               Valid for All States?
@@ -78,7 +78,7 @@ class CreateForm extends React.Component {
                 name="all_states"
                 type="checkbox"
                 checked={values.all_states} />
-              <ErrorMessage name="all_states" component="div" />
+              <ErrorMessage name="all_states" className="error" component="div" />
             </label>
             <label >
               State
@@ -90,7 +90,7 @@ class CreateForm extends React.Component {
                 onChange={handleChange}
                 onBlur={setFieldTouched}
                 value={values.states} />
-              <ErrorMessage name="states" component="div" />
+              <ErrorMessage name="states" className="error" component="div" />
             </label>
             <button type="submit" disabled={isSubmitting}>
               Submit

@@ -6,6 +6,7 @@ const webpack = require('webpack')
 module.exports = () => {
   const env = dotenv.config().parsed;
   const mode = env['ENVIRONMENT'] || 'development'
+  const sourceMap = false // 'eval-source-map'
   
   // reduce it to a nice object, the same as before
   const envKeys = Object.keys(env).reduce((prev, next) => {
@@ -15,7 +16,7 @@ module.exports = () => {
   
   return {
     mode: mode,
-    devtool: mode === 'production' ? false : 'eval-source-map',
+    devtool: mode === 'production' ? false : sourceMap,
     // devServer: {
     //   /*port: 80,
     //   public: 'messy-cart.glitch.me'*/
