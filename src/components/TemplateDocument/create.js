@@ -22,11 +22,7 @@ const TemplateDocumentSchema = Yup.object().shape({
     .ensure(),
   all_states: Yup.boolean(),
   states: Yup.array()
-    .of(
-      Yup.object().shape({
-        label: Yup.string().required(),
-        value: Yup.string().required(),
-      }))
+    .of(Yup.string())
 })
 
 class CreateForm extends React.Component {
@@ -97,21 +93,12 @@ class CreateForm extends React.Component {
                   <Select
                     id="td_states"
                     isMulti={true}
-                    value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => option.value === field.value) : ''}
-                    onChange={(option) => form.setFieldValue(field.name, option.value)}
+                    value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : ''}
+                    onChange={(option) => form.setFieldValue(field.name, option.map((o) => o.value))}
                     onBlur={field.onBlur}
                     options={STATES_AS_OPTIONS} />
                 }
               />
-              <Select
-                id="td_states"
-                name="states"
-                isDisabled={values.all_states}
-                isMulti={true}
-                options={STATES_AS_OPTIONS}
-                onChange={handleChange}
-                onBlur={setFieldTouched}
-                value={values.states} />
               <ErrorMessage name="states" className="error" component="div" />
             </label>
             <button type="submit" disabled={isSubmitting}>
