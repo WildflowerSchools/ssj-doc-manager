@@ -50,13 +50,13 @@ class CreateForm extends React.Component {
             values
           )
           .then(() => {
-            actions.setErrors(null);
+            actions.setErrors(null)
             actions.setSubmitting(false)
             
             this.props.history.push(ROUTES.ADMIN)
           })
          .catch(error => {
-            actions.setErrors(error);
+            actions.setErrors(error)
             actions.setSubmitting(false)
           })
         }}
@@ -73,7 +73,7 @@ class CreateForm extends React.Component {
               <Field id="td_document_url" type="url" name="document_url" />
               <ErrorMessage name="document_url" className="error" component="div" />
             </label>
-            <label htmlFor="td_tage">
+            <label htmlFor="td_stage">
               Startup Journey Stage:
               <Field
                 name="stage"
@@ -117,7 +117,7 @@ class CreateForm extends React.Component {
               />
               <ErrorMessage name="states" className="error" component="div" />
             </label>
-            <button type="submit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting || !isValid}>
               Submit
             </button>
           </Form>
@@ -127,34 +127,14 @@ class CreateForm extends React.Component {
   }
 }
 
-class TemplateCreateBase extends React.Component {
-  constructor(props) {
-    super(props)
-    
-    this.state = {
-      error: null
-    }
-  }
-  
-  handleSubmit() {
-    return this.props.firebase.template_document().set(
-      this.state.template
-    )
-    .then(() => {
-      this.setState({ error: null })
-      this.props.history.push(ROUTES.ADMIN)
-    })
-  }
-  
-  render() {
-    return (
-      <div>
-        <h3>Create Template Document</h3>
-        <CreateForm />
-      </div>
-    )
-  }
-}
+
+
+const TemplateCreateBase = () => (
+  <div>
+    <h3>Create Template Document</h3>
+    <CreateForm />
+  </div>
+)
 
 const TemplateCreatePage = withFirebase(withAuthorization(isAdmin)(TemplateCreateBase))
 export default TemplateCreatePage
