@@ -1,6 +1,9 @@
+import { ErrorMessage, Field, Formik, Form } from 'formik'
+import PropTypes from 'prop-types'
 import React from 'react'
 import Select from 'react-select';
-import PropTypes from 'prop-types'
+import { collectionData } from 'rxfire/firestore'
+import * as Yup from 'yup'
 
 import { withFirebase } from '../Firebase'
 
@@ -52,7 +55,6 @@ class TemplateForm extends React.Component {
             actions.setSubmitting(false)
             
             onSuccess()
-            //this.props.history.push(ROUTES.ADMIN)
           })
          .catch(error => {
             actions.setErrors(error)
@@ -131,8 +133,8 @@ class TemplateForm extends React.Component {
 TemplateForm.propTypes = {
   template: PropTypes.object,
   mode: PropTypes.oneOf(['create', 'edit']).isRequired,
-  onSuccess: PropType.func.isRequired,
-  onFailure: PropType.func
+  onSuccess: PropTypes.func.isRequired,
+  onFailure: PropTypes.func
 };
 
 export default withFirebase(TemplateForm)

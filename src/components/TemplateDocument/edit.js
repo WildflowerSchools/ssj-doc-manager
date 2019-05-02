@@ -10,10 +10,12 @@ import * as ROLES from '../../constants/roles'
 class TemplateEditBase extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { templates: [] }
+    
+    this.id = props.match.id
   }
   
   componentDidMount() {
+    this.props.firebase.template_document(this.id)
     const templatesRef = this.props.firebase.firestore.collection('template_documents')
     collectionData(templatesRef, 'id').subscribe(templates => {
       this.setState({ templates: templates })
@@ -52,5 +54,5 @@ class TemplateEditBase extends React.Component {
   }
 }
 
-const TemplateEdit = withFirebase(withAuthorization(isAdmin)(TemplateEditBase))
-export default TemplateEdit
+const TemplateEditPage = withFirebase(withAuthorization(isAdmin)(TemplateEditBase))
+export default TemplateEditPage

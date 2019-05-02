@@ -1,13 +1,10 @@
 import React from 'react'
 import Select from 'react-select'
-import { ErrorMessage, Field, Formik, Form } from 'formik'
-import * as Yup from 'yup'
-import { collectionData } from 'rxfire/firestore'
 
 import { withAuthorization, isAdmin } from '../Session'
 import { withRouter } from 'react-router-dom'
 
-import TemplateForm form './form'
+import TemplateForm from './form'
 
 import * as ROUTES from '../../constants/routes'
 
@@ -35,7 +32,7 @@ class CreateForm extends React.Component {
   
   render() {
     return (
-      <TemplateForm mode="create" template={this.newTemplate} onSuccess={onSuccess} onFailure={onFailure}</TemplateForm>/>
+      <TemplateForm mode="create" template={this.newTemplate} onSuccess={onSuccess} onFailure={onFailure} />
     )
   }
 }
