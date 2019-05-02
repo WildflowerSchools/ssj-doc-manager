@@ -30,6 +30,8 @@ class TemplateForm extends React.Component {
     const { mode, template, onSuccess, onFailure } = this.props
     
     return (
+      <div>
+            {template !== null ? (
       <Formik
         initialValues={template}
         validationSchema={TemplateDocumentSchema}
@@ -63,8 +65,7 @@ class TemplateForm extends React.Component {
         }}
       >
         {({ errors, touched, handleChange, setFieldTouched, setFieldValue, isSubmitting, isValid, values }) => (
-          <div>
-            {template !== null ? (
+              {console.log("Template: " + JSON.stringify(template))}
               <Form>
                 <label htmlFor="td_document_name">
                   Document Name:
@@ -112,7 +113,7 @@ class TemplateForm extends React.Component {
                         isClearable={true}
                         isDisabled={values.all_states}
                         isMulti={true}
-                        value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : ''}
+                        value={(STATES_AS_OPTIONS && field.value) ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : []}
                         onChange={(option) => setFieldValue(field.name, (option === null ? [] : option.map((o) => o.value)) )}
                         onBlur={field.onBlur}
                         options={STATES_AS_OPTIONS} />
@@ -124,12 +125,10 @@ class TemplateForm extends React.Component {
                   Submit
                 </button>
               </Form>
-            ) : (
-              <div>Loading...</div>
-            )}
           </div>
         )}
       </Formik>
+          
     )
   }
 }
