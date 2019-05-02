@@ -13,11 +13,10 @@ import { STATES_AS_OPTIONS } from '../../constants/states'
 import { STAGES_AS_OPTIONS } from '../../constants/stages'
 
 const TemplateDocumentSchema = Yup.object().shape({
-  document_name: Yup.string()
-    .min(1, 'Too Short!')
-    .required('Required'),
+  document_name: Yup.string("Enter the name of the document")
+    .required('Name is required'),
   document_url: Yup.string()
-    .url('Invalid url')
+    .url('Document URL is invalid')
     .required('Required'),
   stage: Yup.string()
     .ensure(),

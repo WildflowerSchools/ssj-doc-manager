@@ -29,7 +29,7 @@ module.exports = () => {
     //     path: '/',
     // },
     module: {
-      rules: [
+      /*rules: [
         {
           test: /\.js$/,
           include: /src/,
@@ -40,7 +40,7 @@ module.exports = () => {
             cacheCompression: false
           }
         }
-      ]
+      ]*/
     },
     plugins: [
       /* Supply env vars to react scripts */
