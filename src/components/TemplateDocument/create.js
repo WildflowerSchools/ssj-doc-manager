@@ -48,7 +48,7 @@ class CreateForm extends React.Component {
           console.log(values)
         }}
       >
-        {({ errors, touched, handleChange, setFieldTouched, isSubmitting, values }) => (
+        {({ errors, touched, handleChange, setFieldTouched, setFieldValue, isSubmitting, values }) => (
           <Form>
             <label htmlFor="td_document_name">
               Document Name:
@@ -64,13 +64,13 @@ class CreateForm extends React.Component {
               Startup Journey Stage:
               <Field
                 name="stage"
-                component={({field, form}) =>
+                component={({field}) =>
                   <Select
                     id="td_stage"
                     isMulti={false}
                     isClearable={true}
                     value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
-                    onChange={(option) => form.setFieldValue(field.name, option.value )}
+                    onChange={(option) => setFieldValue(field.name, (option === null ? '' : option.value) )}
                     onBlur={field.onBlur}
                     options={STAGES_AS_OPTIONS} />
                 }
@@ -90,13 +90,14 @@ class CreateForm extends React.Component {
               State
               <Field
                 name="states"
-                component={({field, form}) =>
+                component={({field}) =>
                   <Select
                     id="td_states"
-                    isMulti={true}
                     isClearable={true}
+                    isDisabled={values.all_states}
+                    isMulti={true}
                     value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : ''}
-                    onChange={(option) => form.setFieldValue(field.name, option.map((o) => o.value))}
+                    onChange={(option) => setFieldValue(field.name, (option === null ? [] : option.map((o) => o.value)) )}
                     onBlur={field.onBlur}
                     options={STATES_AS_OPTIONS} />
                 }
