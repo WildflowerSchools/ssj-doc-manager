@@ -17,8 +17,10 @@ module.exports = () => {
     mode: mode,
     devtool: mode === 'production' ? false : 'eval-source-map',
     devServer: {
-      port: 80,
-      public: 'messy-cart.glitch.me'
+      /*port: 80,
+      public: 'messy-cart.glitch.me'*/
+      hot: true,
+      inline: true
     },
     module: {
       rules: [

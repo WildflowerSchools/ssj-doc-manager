@@ -21,6 +21,7 @@ devDependencies:
   rxjs: 6.3.3
   webpack: 4.23.1
   webpack-cli: 3.1.2
+  webpack-dev-middleware: 3.6.2
   webpack-dev-server: 3.3.1
   yup: 0.27.0
 packages:
@@ -8475,5 +8476,6 @@ specifiers:
   rxjs: ^6.3.3
   webpack: ^4.23.1
   webpack-cli: ^3.1.2
+  webpack-dev-middleware: ^3.6.2
   webpack-dev-server: ^3.3.1
   yup: ^0.27.0
