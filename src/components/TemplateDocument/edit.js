@@ -21,9 +21,9 @@ class EditForm extends React.Component {
   }
   
   componentDidMount() {
-    this.props.firebase.template_document(this.id).once('value')
-    .then(function(template) {
-      this.setState({ template: template   })
+    this.props.firebase.template_document(this.id).get()
+    .then((template) => {
+      this.setState({ template: template.data() })
     })
   }
           
