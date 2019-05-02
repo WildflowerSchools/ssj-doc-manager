@@ -45,7 +45,7 @@ class EditForm extends React.Component {
 const TemplateEditBase = ({ id, firebase, history, match }) => (
   <div>
     <h3>Edit Template Document</h3>
-    <EditForm id={id} firebase={firebase} history={history} />
+    <EditForm id={match.params.id} firebase={firebase} history={history} />
   </div>
 )
 
