@@ -8,6 +8,8 @@ import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
 import * as ROUTES from '../../constants/routes'
+import * as STAGES from '../../constants/stages'
+import * as STATES from '../../constants/states'
 
 class TemplateListBase extends React.Component {
   constructor(props) {
@@ -24,7 +26,7 @@ class TemplateListBase extends React.Component {
   
   render() {
     const lis = this.state.templates.map(c => {
-      let states = c.states.join(', ');
+      let states = c.states.map( s => STATES.STATES[s] ).join(', ');
       if (c.all_states) {
         states = 'All'
       }
@@ -38,7 +40,7 @@ class TemplateListBase extends React.Component {
         <li key={c.id}>
           <div><b>Document:</b> {doc_link}</div>
           <div>
-            <span><b>Stage:</b> {c.stage || ''}</span>
+            <span><b>Stage:</b> {STAGES.STAGES[c.stage] || ''}</span>
             <span><b>States:</b> {states}</span>
           </div>
           <button><Link to={ROUTES.adminEditTemplateWithId(c.id)}>Edit</Link></button>
