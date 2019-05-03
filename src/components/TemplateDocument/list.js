@@ -33,7 +33,7 @@ class TemplateListBase extends React.Component {
       
       let doc_link = '';
       if (c.document_url) {
-        doc_link = (<a href={c.document_url}>{c.document_name || 'unspecified'}</a>)
+        doc_link = (<a target="_blank" href={c.document_url}>{c.document_name || 'unspecified'}</a>)
       }
       
       return (
@@ -52,6 +52,30 @@ class TemplateListBase extends React.Component {
       <div>
         <h3>Templates</h3>
         <Link to={ROUTES.ADMIN_CREATE_TEMPLATE}>+ Add New</Link>
+        <div>
+          <span><b>Filter:</b></span>
+          <label htmlFor="td_stage">
+            Startup Journey Stage
+            <Select
+              id="td_stage"
+              isMulti={false}
+              isClearable={true}
+              value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
+              onChange={(option) => setFieldValue(field.name, (option === null ? '' : option.value) )}
+              onBlur={field.onBlur}
+              options={STAGES_AS_OPTIONS} />
+          </label>
+          <label htmlFor="td_stage">
+            <Select
+              id="td_state"
+              isMulti={false}
+              isClearable={true}
+              value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
+              onChange={(option) => setFieldValue(field.name, (option === null ? '' : option.value) )}
+              onBlur={field.onBlur}
+              options={STAGES_AS_OPTIONS} />
+          </label>
+        </div>
         <ul className="documents alternate">{lis}</ul> 
       </div>
     )

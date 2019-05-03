@@ -5,6 +5,7 @@ import { withAuthorization, isAuthenticated } from '../Session'
 import { withFirebase } from '../Firebase'
 
 import * as ROLES from '../../constants/roles'
+import * as STAGES from '../../constants/stages'
 
 class UserDocumentListBase extends React.Component {
   constructor(props) {
@@ -24,14 +25,14 @@ class UserDocumentListBase extends React.Component {
 
       let doc_link = '';
       if (c.document_url) {
-        doc_link = (<a href={c.document_url}>{c.document_name || 'unspecified'}</a>)
+        doc_link = (<a target="_blank" href={c.document_url}>{c.document_name || 'unspecified'}</a>)
       }
       
       return (
         <li key={c.id}>
           <div><b>Document:</b> {doc_link}</div>
           <div>
-            <span><b>Stage:</b> {c.stage || ''}</span>
+            <span><b>Stage:</b> {STAGES.STAGES[c.stage] || ''}</span>
           </div>
           <button>Edit</button>
         </li>
