@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import React from 'react'
+import Select from 'react-select';
 import { collectionData } from 'rxfire/firestore'
 
 import { withAuthorization, isAdmin } from '../Session'
@@ -14,7 +15,13 @@ import * as STATES from '../../constants/states'
 class TemplateListBase extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { templates: [] }
+    this.state = {
+      templates: [],
+      filters: {
+        state: '',
+        stage: ''
+      }
+    }
   }
   
   componentDidMount() {
@@ -60,20 +67,18 @@ class TemplateListBase extends React.Component {
               id="td_stage"
               isMulti={false}
               isClearable={true}
-              value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
-              onChange={(option) => setFieldValue(field.name, (option === null ? '' : option.value) )}
-              onBlur={field.onBlur}
-              options={STAGES_AS_OPTIONS} />
+              value={this.state.filters.stage}
+              options={STAGES.STAGES_AS_OPTIONS} />
           </label>
-          <label htmlFor="td_stage">
+          <label htmlFor="td_state">
+            State
             <Select
               id="td_state"
               isMulti={false}
               isClearable={true}
-              value={STAGES_AS_OPTIONS ? STAGES_AS_OPTIONS.find(option => option.value === field.value) : ''}
-              onChange={(option) => setFieldValue(field.name, (option === null ? '' : option.value) )}
-              onBlur={field.onBlur}
-              options={STAGES_AS_OPTIONS} />
+              value={this.state.filters.state}
+              onChange={ (v) => this.setState( {...this.state.filters ) }
+              options={STATES.STATES_AS_OPTIONS} />
           </label>
         </div>
         <ul className="documents alternate">{lis}</ul> 
