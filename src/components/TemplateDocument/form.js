@@ -55,7 +55,8 @@ class TemplateForm extends React.Component {
                 actions.setErrors(null)
                 actions.setSubmitting(false)
 
-                onSuccess(docRef.id)
+                let _id = mode === 'create' ? docRef.id : id
+                onSuccess(_id)
               })
               .catch(error => {
                 actions.setErrors(error)
@@ -121,7 +122,7 @@ class TemplateForm extends React.Component {
                   />
                   <ErrorMessage name="states" className="error" component="div" />
                 </label>
-                <button type="submit" disabled={isSubmitting || !isValid}>
+                <button type="submit" disabled={isSubmitting /*TODO: Whats up w/ isValid? -> || !isValid */}>
                   Submit
                 </button>
               </Form>
