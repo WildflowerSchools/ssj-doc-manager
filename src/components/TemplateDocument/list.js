@@ -26,6 +26,13 @@ class TemplateListBase extends React.Component {
   
   componentDidMount() {
     const templatesRef = this.props.firebase.template_documents()
+    if (this.state.filters.state) {
+      templatesRef.where('state', '==', this.state.filters.state)
+    }
+    if (this.state.filters.stage) {
+      templatesRef.where('stage', '==', this.state.filters.stage)
+    }
+    
     collectionData(templatesRef, 'id').subscribe(templates => {
       this.setState({ templates: templates })
     })
@@ -60,7 +67,7 @@ class TemplateListBase extends React.Component {
         <h3>Templates</h3>
         <Link to={ROUTES.ADMIN_CREATE_TEMPLATE}>+ Add New</Link>
         <div>
-          <span><b>Filter:</b></span>
+          <h4><b>Filter:</b></h4>
           <label htmlFor="td_stage">
             Startup Journey Stage
             <Select
@@ -68,6 +75,7 @@ class TemplateListBase extends React.Component {
               isMulti={false}
               isClearable={true}
               value={this.state.filters.stage}
+              onChange={ (v) => this.setState( { filters: { ...this.state.filters, stage: v } }) }
               options={STAGES.STAGES_AS_OPTIONS} />
           </label>
           <label htmlFor="td_state">
@@ -77,7 +85,7 @@ class TemplateListBase extends React.Component {
               isMulti={false}
               isClearable={true}
               value={this.state.filters.state}
-              onChange={ (v) => this.setState( {...this.state.filters ) }
+              onChange={ (v) => this.setState( { filters: { ...this.state.filters, state: v } }) }
               options={STATES.STATES_AS_OPTIONS} />
           </label>
         </div>
