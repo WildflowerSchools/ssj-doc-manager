@@ -37,7 +37,7 @@ class EditForm extends React.Component {
   
   render() {
     return (
-      <TemplateForm mode="edit" template={this.state.template} onSuccess={this.onSuccess} onFailure={this.onFailure} />
+      <TemplateForm mode="edit" id={this.id} template={this.state.template} onSuccess={this.onSuccess} onFailure={this.onFailure} />
     )
   }
 }

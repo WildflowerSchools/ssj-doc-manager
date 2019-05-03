@@ -28,7 +28,7 @@ const TemplateDocumentSchema = Yup.object().shape({
 class TemplateForm extends React.Component {
   render() {
     
-    const { mode, template, onSuccess, onFailure } = this.props
+    const { id, template, mode, onSuccess, onFailure } = this.props
     
     return (
       <div>
@@ -43,7 +43,7 @@ class TemplateForm extends React.Component {
               if (mode === 'create') {
                 firebaseAction = this.props.firebase.template_documents().add(values)
               } else if (mode === 'edit') {
-                firebaseAction = this.props.firebase.template_document(template.id).update(values)
+                firebaseAction = this.props.firebase.template_document(id).update(values)
               } else {
                 actions.setErrors("Internal error: Mode should be 'edit' or 'create'")
                 onFailure("Internal error")
@@ -113,7 +113,7 @@ class TemplateForm extends React.Component {
                         isClearable={true}
                         isDisabled={values.all_states}
                         isMulti={true}
-                        value={(STATES_AS_OPTIONS && field.value) ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : []}
+                        value={STATES_AS_OPTIONS ? STATES_AS_OPTIONS.filter(option => field.value.includes(option.value)) : []}
                         onChange={(option) => setFieldValue(field.name, (option === null ? [] : option.map((o) => o.value)) )}
                         onBlur={field.onBlur}
                         options={STATES_AS_OPTIONS} />
@@ -136,6 +136,7 @@ class TemplateForm extends React.Component {
 }
 
 TemplateForm.propTypes = {
+  id: PropTypes.string,
   template: PropTypes.object,
   mode: PropTypes.oneOf(['create', 'edit']).isRequired,
   onSuccess: PropTypes.func.isRequired,
