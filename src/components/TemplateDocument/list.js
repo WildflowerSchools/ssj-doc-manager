@@ -39,7 +39,17 @@ class TemplateListBase extends React.Component {
   }
   
   componentDidMount() {
-    self.refresh()
+    const templatesRef = this.props.firebase.template_documents()
+    if (this.state.filters.state) {
+      templatesRef.where('state', '==', this.state.filters.state)
+    }
+    if (this.state.filters.stage) {
+      templatesRef.where('stage', '==', this.state.filters.stage)
+    }
+    
+    collectionData(templatesRef, 'id').subscribe(templates => {
+      this.setState({ templates: templates })
+    })
   }
   
   render() {
