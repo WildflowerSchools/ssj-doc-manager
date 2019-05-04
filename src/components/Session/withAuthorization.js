@@ -17,7 +17,7 @@ const withAuthorization = condition => Component => {
           }
         },
         () => this.props.history.push(ROUTES.SIGN_IN),
-      );
+      )
     }
 
     componentWillUnmount() {
@@ -32,7 +32,7 @@ const withAuthorization = condition => Component => {
             }
           }
         </AuthUserContext.Consumer>
-      );
+      )
     }
   }
 

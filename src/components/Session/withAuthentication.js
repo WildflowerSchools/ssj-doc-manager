@@ -10,7 +10,7 @@ const withAuthentication = Component => {
 
       this.state = {
         authUser: JSON.parse(localStorage.getItem('authUser')),
-      };
+      }
     }
 
     componentDidMount() {
@@ -23,7 +23,7 @@ const withAuthentication = Component => {
           localStorage.removeItem('authUser')
           this.setState({ authUser: null })
         },
-      );
+      )
     }
 
     componentWillUnmount() {
@@ -35,7 +35,7 @@ const withAuthentication = Component => {
         <AuthUserContext.Provider value={this.state.authUser}>
           <Component {...this.props} />
         </AuthUserContext.Provider>
-      );
+      )
     }
   }
 

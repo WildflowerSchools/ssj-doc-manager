@@ -23,7 +23,7 @@ class UserDocumentListBase extends React.Component {
   render() {
     const lis = this.state.templates.map(c => {
 
-      let doc_link = '';
+      let doc_link = ''
       if (c.document_url) {
         doc_link = (<a target="_blank" href={c.document_url}>{c.document_name || 'unspecified'}</a>)
       }
@@ -44,7 +44,7 @@ class UserDocumentListBase extends React.Component {
         <h3>My Documents</h3>
         <ul className="documents alternate">{lis}</ul> 
       </div>
-    );
+    )
   }
 }
 

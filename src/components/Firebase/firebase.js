@@ -16,7 +16,6 @@ class Firebase {
     firebase.initializeApp(config)
     
     this.firestore = firebase.firestore()
-    this.firestore.settings({ timestampsInSnapshots: true })
     
     this.auth = firebase.auth()
     
@@ -60,7 +59,7 @@ class Firebase {
             }
 
             next(authUser)
-          });
+          })
       } else {
         fallback()
       }

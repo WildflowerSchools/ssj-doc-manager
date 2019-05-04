@@ -41,7 +41,6 @@ class SignInGoogleBase extends Component {
         )
       })
       .then(() => {
-        console.log("Update done!")
         this.setState({ error: null })
         this.props.history.push(ROUTES.HOME)
       })

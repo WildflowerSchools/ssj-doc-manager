@@ -9,7 +9,7 @@ const HomePageBase = () => (
     <h1>My Documents</h1>
     <UserDocumentList />
   </div>
-);
+)
 
 const HomePage = withAuthorization(isAuthenticated)(HomePageBase)
 export default HomePage

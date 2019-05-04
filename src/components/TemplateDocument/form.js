@@ -1,8 +1,7 @@
 import { ErrorMessage, Field, Formik, Form } from 'formik'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Select from 'react-select';
-import { collectionData } from 'rxfire/firestore'
+import Select from 'react-select'
 import * as Yup from 'yup'
 
 import { withFirebase } from '../Firebase'
@@ -142,6 +141,6 @@ TemplateForm.propTypes = {
   mode: PropTypes.oneOf(['create', 'edit']).isRequired,
   onSuccess: PropTypes.func.isRequired,
   onFailure: PropTypes.func
-};
+}
 
 export default withFirebase(TemplateForm)
