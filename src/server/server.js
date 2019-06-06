@@ -1,7 +1,7 @@
 import express from "express"
 import path from "path"
 
-import { firebase } from "./firebase"
+import { firebase } from "./Firebase"
 import { gClient } from "./Google"
 ;(async () => {
   try {
