@@ -47,7 +47,8 @@
     "firebase-admin": "^7.4.0",
     "googleapis": "^40.0.0",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react-dom": "^16.8.0",
+    "firebase-tools": "^5.1.1"
   },
   "engines": {
     "node": "11.x"

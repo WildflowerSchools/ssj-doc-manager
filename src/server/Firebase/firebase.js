@@ -7,7 +7,7 @@ class Firebase {
 
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccountKey),
-      databaseURL: "https://ssj-document-manager.firebaseio.com"
+      databaseURL: process.env.FIREBASE_DATABASE_URL
     })
 
     this.firestore = admin.firestore()
