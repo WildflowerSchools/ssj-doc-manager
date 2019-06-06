@@ -12,7 +12,7 @@ class GClient {
       null,
       serviceAccountKey.private_key,
       ["https://www.googleapis.com/auth/drive"],
-      "test.schools@wildflowerschools.org"
+      process.env.GOOGLE_DOC_MANAGEMENT_USER
     )
   }
 
