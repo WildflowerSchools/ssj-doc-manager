@@ -75,10 +75,10 @@ span.clickable button {
 ul.alternate {
   list-style-type: none;
 }
-ul.alternate li {
+ul.alternate > li {
   background: #fcfcfc;
 }
-ul.alternate li:nth-child(odd) {
+ul.alternate > li:nth-child(odd) {
   background: #f3f3f3;
 }
 
@@ -129,19 +129,23 @@ ul.horizontal li a.active {
   font-weight: bold;
 }
 
+ul > li {
+  padding: 2px;
+}
+
 ul.documents {
   padding-left: 0;
 }
 
-ul.documents li {
+ul.documents > li {
   padding: 10px;
 }
 
-ul.documents li > *:not(:first-child) {
+ul.documents > li > *:not(:first-child) {
   margin-top: 10px;
 }
 
-ul.documents li > *:last-child {
+ul.documents > li > *:last-child {
   margin-bottom: 10px;
 }
 

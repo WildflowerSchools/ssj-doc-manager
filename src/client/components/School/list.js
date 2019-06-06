@@ -122,6 +122,9 @@ class SchoolListBase extends React.Component {
                 })}
             </ul>
           </div>
+          <div>
+            <b>Documents:</b>&nbsp;{s.documents.length}
+          </div>
           <button>
             <Link to={ROUTES.adminEditSchoolWithId(s.id)}>Edit</Link>
           </button>

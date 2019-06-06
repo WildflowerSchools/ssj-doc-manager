@@ -16,9 +16,6 @@ const Navigation = () => (
 
 const NavigationAuth = ({ authUser }) => (
   <ul>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
     {!!authUser.roles[ROLES.ADMIN] && (
       <li>
         <Link to={ROUTES.ADMIN}>Admin</Link>

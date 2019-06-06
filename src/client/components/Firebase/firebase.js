@@ -115,18 +115,26 @@ class Firebase {
     let schoolRef = this.school(schoolId)
     let teacherRef = this.teacher(teacherId)
 
-    return schoolRef.update({
-      teachers: firebase.firestore.FieldValue.arrayUnion(teacherRef)
-    })
+    return schoolRef
+      .update({
+        teachers: firebase.firestore.FieldValue.arrayUnion(teacherRef)
+      })
+      .catch(e => {
+        console.log(e.message)
+      })
   }
 
   school_remove_teacher = (schoolId, teacherId) => {
     let schoolRef = this.school(schoolId)
     let teacherRef = this.teacher(teacherId)
 
-    return schoolRef.update({
-      teachers: firebase.firestore.FieldValue.arrayRemove(teacherRef)
-    })
+    return schoolRef
+      .update({
+        teachers: firebase.firestore.FieldValue.arrayRemove(teacherRef)
+      })
+      .catch(e => {
+        console.log(e.message)
+      })
   }
 
   teacher = tid => this.firestore.doc(`teachers/${tid}`)

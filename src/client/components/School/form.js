@@ -99,7 +99,7 @@ class SchoolForm extends React.Component {
                     id="td_school_name"
                     type="text"
                     name="name"
-                    autocomplete="off"
+                    autoComplete="off"
                   />
                   <ErrorMessage name="name" className="error" component="div" />
                 </label>

@@ -5,7 +5,6 @@ import AdminPage from "../Admin"
 import { TemplateCreatePage, TemplateEditPage } from "../TemplateDocument/"
 import { SchoolCreatePage, SchoolEditPage } from "../School/"
 import { TeacherCreatePage, TeacherEditPage } from "../Teacher/"
-import HomePage from "../Home"
 import LandingPage from "../Landing"
 import SignInPage from "../SignIn"
 
@@ -19,11 +18,7 @@ const RouteAuthLanding = () => (
   <AuthUserContext.Consumer>
     {authUser =>
       authUser ? (
-        <Route
-          exact
-          path={[ROUTES.HOME, ROUTES.LANDING]}
-          component={HomePage}
-        />
+        <Route exact path={[ROUTES.LANDING]} component={AdminPage} />
       ) : (
         <Route exact path={ROUTES.LANDING} component={LandingPage} />
       )

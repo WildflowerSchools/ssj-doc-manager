@@ -22,7 +22,7 @@ class TeacherForm extends React.Component {
     }
 
     if (this.props.id) {
-      this.props.firebase.teachers_school(this.props.id, this.setTeacherSchool)
+      this.props.firebase.teachers_school(this.props.id, this.initTeacherSchool)
     }
     this.props.firebase.schools_as_options(this.setSchools)
   }
@@ -31,10 +31,11 @@ class TeacherForm extends React.Component {
     this.setState({ schoolOptions: options })
   }
 
+  initTeacherSchool = schoolId => {
+    this.setState({ schoolIdOriginal: schoolId, schoolId: schoolId })
+  }
+
   setTeacherSchool = schoolId => {
-    if (this.state.schoolIdOriginal === null) {
-      this.setState({ schoolIdOriginal: schoolId })
-    }
     this.setState({ schoolId: schoolId })
   }
 
@@ -126,7 +127,7 @@ class TeacherForm extends React.Component {
                     id="td_teacher_name"
                     type="text"
                     name="name"
-                    autocomplete="off"
+                    autoComplete="off"
                   />
                   <ErrorMessage name="name" className="error" component="div" />
                 </label>

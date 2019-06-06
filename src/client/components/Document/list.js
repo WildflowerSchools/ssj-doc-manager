@@ -157,10 +157,7 @@ class DocumentListFilterBase extends React.Component {
           />
         </label>
         */}
-        <label
-          htmlFor="td_school"
-          style={{ width: "200px", gridColumnStart: 1 }}
-        >
+        <label htmlFor="td_school" style={{ width: "200px" }}>
           School
           <Select
             id="td_school"

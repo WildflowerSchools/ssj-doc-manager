@@ -134,6 +134,9 @@ class TeacherListBase extends React.Component {
               />
             )}
           </div>
+          <div>
+            <b>Documents:</b>&nbsp;{t.documents.length}
+          </div>
           <button>
             <Link to={ROUTES.adminEditTeacherWithId(t.id)}>Edit</Link>
           </button>

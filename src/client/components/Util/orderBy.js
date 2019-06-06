@@ -5,7 +5,7 @@ import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward"
 
 const AnimatedArrowUpwardIcon = withStyles({
   root: {
-    transform:
+    transition:
       "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
   }
 })(ArrowUpwardIcon)
