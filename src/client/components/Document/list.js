@@ -9,13 +9,13 @@ import { collectionData } from "rxfire/firestore"
 import { map } from "rxjs/operators"
 import { combineLatest } from "rxjs"
 
-import { withAuthorization, isAdmin } from "../Session"
 import { withFirebase } from "../Firebase"
-
-import * as STAGES from "../../constants/stages"
-
+import { withAuthorization, isAdmin } from "../Session"
 import { SchoolDetails } from "../School"
 import { TeacherDetails } from "../Teacher"
+import { OrderBy } from "../Util"
+
+import * as STAGES from "../../constants/stages"
 
 class DocumentListFilterBase extends React.Component {
   constructor(props) {
@@ -217,7 +217,9 @@ class TemplateListBase extends React.Component {
         school: "",
         teacher: ""
       },
-      tooltipCopy: ""
+      tooltipCopy: "",
+      orderBy: "",
+      orderDirection: "asc"
     }
   }
 
@@ -226,10 +228,13 @@ class TemplateListBase extends React.Component {
   }
 
   refreshList = () => {
-    let dRef = this.props.firebase.documents()
+    let dQuery = this.props.firebase.documents()
+    if (this.state.orderBy) {
+      dQuery = dQuery.orderBy(this.state.orderBy, this.state.orderDirection)
+    }
 
     if (this.state.filters.template_document) {
-      dRef = dRef.where(
+      dQuery = dQuery.where(
         "template_document",
         "==",
         this.props.firebase.template_document(
@@ -238,35 +243,35 @@ class TemplateListBase extends React.Component {
       )
     }
     if (this.state.filters.stage) {
-      dRef = dRef.where("stage", "==", this.state.filters.stage)
+      dQuery = dQuery.where("stage", "==", this.state.filters.stage)
     }
     if (this.state.filters.school) {
-      dRef = dRef.where(
+      dQuery = dQuery.where(
         "owner",
         "==",
         this.props.firebase.school(this.state.filters.school)
       )
     }
     if (this.state.filters.teacher) {
-      dRef = dRef.where(
+      dQuery = dQuery.where(
         "owner",
         "==",
         this.props.firebase.teacher(this.state.filters.teacher)
       )
     }
 
-    let documents$ = collectionData(dRef, "id")
+    let documents$ = collectionData(dQuery, "id")
 
     // 'or' statements are hard in Firebase. The following is how we write a query that matches on state names and includes records with all_states == true:
     //    "if (template.state == 'MN' or template.all_states = true)"
     if (this.state.filters.state) {
-      const allStatesRef = dRef.where("all_states", "==", true)
-      const specificStateRef = dRef
+      const allStatesQuery = dQuery.where("all_states", "==", true)
+      const specificStateQuery = dQuery
         .where("states", "array-contains", this.state.filters.state)
         .where("all_states", "==", false)
 
-      const allStates$ = collectionData(allStatesRef, "id")
-      const specificState$ = collectionData(specificStateRef, "id")
+      const allStates$ = collectionData(allStatesQuery, "id")
+      const specificState$ = collectionData(specificStateQuery, "id")
 
       documents$ = combineLatest([allStates$, specificState$]).pipe(
         map(documents => {
@@ -346,6 +351,13 @@ class TemplateListBase extends React.Component {
   setTeacherFilter = teacher => {
     this.setState(
       { filters: { ...this.state.filters, teacher: teacher } },
+      this.refreshList
+    )
+  }
+
+  setOrderBy = (orderBy, direction) => {
+    this.setState(
+      { orderBy: orderBy, orderDirection: direction },
       this.refreshList
     )
   }
@@ -478,6 +490,13 @@ class TemplateListBase extends React.Component {
           setStage={this.setStageFilter}
           setSchool={this.setSchoolFilter}
           setTeacher={this.setTeacherFilter}
+        />
+        <OrderBy
+          setOrderBy={this.setOrderBy}
+          fields={[
+            { name: "document_name", public: "Name" },
+            { name: "stage", public: "Stage" }
+          ]}
         />
         <ul className="documents alternate">{lis}</ul>
       </div>

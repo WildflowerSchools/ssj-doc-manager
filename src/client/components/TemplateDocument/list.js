@@ -1,22 +1,19 @@
 import { Link } from "react-router-dom"
 
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward"
-import { withStyles } from "@material-ui/core/styles"
-
 import React from "react"
 import Select from "react-select"
 import { collectionData } from "rxfire/firestore"
 import { map } from "rxjs/operators"
 import { combineLatest } from "rxjs"
 
+import { CreateModal } from "../CopyDocuments"
 import { withAuthorization, isAdmin } from "../Session"
 import { withFirebase } from "../Firebase"
+import { OrderBy } from "../Util"
 
 import * as ROUTES from "../../constants/routes"
 import * as STAGES from "../../constants/stages"
 import * as STATES from "../../constants/states"
-
-import { CreateModal } from "../CopyDocuments"
 
 const TemplateListFilter = ({ filters, setSearch, setStage, setState }) => {
   const filterGridContainerStyle = {
@@ -79,114 +76,6 @@ const TemplateListFilter = ({ filters, setSearch, setStage, setState }) => {
       </label>
     </div>
   )
-}
-
-const AnimatedArrowUpwardIcon = withStyles({
-  root: {
-    transform:
-      "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms"
-  }
-})(ArrowUpwardIcon)
-
-class TemplateListOrder extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.setOrderBy = props.setOrderBy
-
-    this.state = {
-      active: "",
-      direction: "asc"
-    }
-  }
-
-  onOrderBySelected = field => {
-    let newActive = field,
-      newDirection = "asc"
-
-    if (this.state.active === field) {
-      if (this.state.direction === "asc") {
-        newDirection = "desc"
-      }
-    }
-
-    this.setState({ active: newActive, direction: newDirection }, () => {
-      this.setOrderBy(this.state.active, this.state.direction)
-    })
-  }
-
-  getArrowClassNames = field => {
-    if (this.state.active === field) {
-      if (this.state.direction === "desc") {
-        return "iconDirectionDesc"
-      }
-    } else {
-      return "iconHidden"
-    }
-
-    return ""
-  }
-
-  render() {
-    const orderByListUl = {
-      listStyleType: "none",
-      margin: "0",
-      padding: "0",
-      overflow: "hidden"
-    }
-
-    const orderByListLi = {
-      cursor: "pointer",
-      float: "left",
-      display: "inline-flex",
-      alignItems: "center",
-      flexDirection: "inherit",
-      justifyContent: "flex-start",
-      marginLeft: "10px"
-    }
-
-    return (
-      <div style={{ display: "inline-flex", alignItems: "center" }}>
-        <h4>
-          <b>Order By:</b>
-        </h4>
-        <ul style={orderByListUl}>
-          <li
-            style={orderByListLi}
-            onClick={() => {
-              this.onOrderBySelected("document_name")
-            }}
-          >
-            <span>
-              <AnimatedArrowUpwardIcon
-                className={
-                  "iconAnimated " + this.getArrowClassNames("document_name")
-                }
-                fontSize="small"
-              />
-              &nbsp;
-            </span>
-            Name
-          </li>
-          <li
-            style={orderByListLi}
-            onClick={() => {
-              this.onOrderBySelected("stage")
-            }}
-          >
-            <span>
-              <AnimatedArrowUpwardIcon
-                className={"iconAnimated " + this.getArrowClassNames("stage")}
-                fontSize="small"
-              />
-              &nbsp;
-            </span>
-            Stage
-          </li>
-        </ul>
-      </div>
-    )
-  }
 }
 
 class TemplateListBase extends React.Component {
@@ -304,7 +193,6 @@ class TemplateListBase extends React.Component {
   }
 
   setOrderBy = (orderBy, direction) => {
-    console.log(`OrderBy: ${orderBy}, Direction: ${direction}`)
     this.setState(
       { orderBy: orderBy, orderDirection: direction },
       this.refreshList
@@ -440,7 +328,13 @@ class TemplateListBase extends React.Component {
           setState={this.setStateFilter}
           setStage={this.setStageFilter}
         />
-        <TemplateListOrder setOrderBy={this.setOrderBy} />
+        <OrderBy
+          setOrderBy={this.setOrderBy}
+          fields={[
+            { name: "document_name", public: "Name" },
+            { name: "stage", public: "Stage" }
+          ]}
+        />
         <div style={{ margin: "10px 0" }}>
           <span>
             <button
