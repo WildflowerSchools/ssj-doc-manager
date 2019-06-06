@@ -1,0 +1,169 @@
+/* styles */
+/* called by your view template */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em;
+}
+
+h1 {
+  font-style: italic;
+  color: #373fff;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+p {
+  max-width: 600px;
+}
+
+form {
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: cyan;
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 3px;
+}
+
+form.fullWidth {
+  max-width: 100%;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: 2px 2px teal;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: yellow;
+}
+
+button:active {
+  box-shadow: none;
+}
+
+span.clickable {
+  cursor: pointer;
+}
+
+span.clickable button {
+  box-shadow: none;
+}
+
+ul.alternate {
+  list-style-type: none;
+}
+ul.alternate > li {
+  background: #fcfcfc;
+}
+ul.alternate > li:nth-child(odd) {
+  background: #f3f3f3;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid lightgrey;
+}
+
+form label {
+  margin-bottom: 20px;
+  display: block;
+}
+
+form label > *:first-child {
+  margin-top: 5px;
+}
+
+form .error {
+  color: red;
+}
+
+ul.horizontal {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul.horizontal li {
+  float: left;
+}
+
+ul.horizontal li a {
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.horizontal > li:first-child a {
+  padding-left: 0px;
+}
+
+ul.horizontal li a.active {
+  color: black;
+  pointer-events: none;
+  font-weight: bold;
+}
+
+ul > li {
+  padding: 2px;
+}
+
+ul.documents {
+  padding-left: 0;
+}
+
+ul.documents > li {
+  padding: 10px;
+}
+
+ul.documents > li > *:not(:first-child) {
+  margin-top: 10px;
+}
+
+ul.documents > li > *:last-child {
+  margin-bottom: 10px;
+}
+
+.visuallyHidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.iconDirectionDesc {
+  transform: rotate(180deg);
+}
+
+.iconHidden {
+  opacity: 0;
+}
