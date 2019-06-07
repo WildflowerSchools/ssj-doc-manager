@@ -58,7 +58,6 @@ class CopyDocumentsForm extends React.Component {
 
             API.makeCopy(templates, schools, teachers)
               .then(data => {
-                console.log(data)
                 onSuccess()
               })
               .catch(error => onFailure(error))

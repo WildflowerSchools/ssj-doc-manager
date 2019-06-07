@@ -31,7 +31,7 @@ class SignInGoogleBase extends Component {
   onSubmit = event => {
     this.props.firebase
       .doSignInWithGoogle()
-      .then(socialAuthUser => {
+      /*.then(socialAuthUser => {
         return this.props.firebase.user(socialAuthUser.user.uid).set(
           {
             username: socialAuthUser.user.displayName,
@@ -39,7 +39,7 @@ class SignInGoogleBase extends Component {
           },
           { merge: true }
         )
-      })
+      })*/
       .then(() => {
         this.setState({ error: null })
         this.props.history.push(ROUTES.ADMIN)

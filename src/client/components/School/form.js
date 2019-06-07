@@ -49,6 +49,7 @@ class SchoolForm extends React.Component {
 
               let firebaseAction = null
               if (mode === "create") {
+                Object.assign(final, { documents: [] }) // Add documents field on create
                 firebaseAction = this.props.firebase.schools().add(final)
               } else if (mode === "edit") {
                 firebaseAction = this.props.firebase.school(id).update(final)

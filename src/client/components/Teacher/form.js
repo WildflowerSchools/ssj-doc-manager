@@ -55,6 +55,7 @@ class TeacherForm extends React.Component {
 
               let firebaseAction = null
               if (mode === "create") {
+                Object.assign(final, { documents: [] }) // Add documents field on create
                 firebaseAction = this.props.firebase.teachers().add(final)
               } else if (mode === "edit") {
                 firebaseAction = this.props.firebase.teacher(id).update(final)

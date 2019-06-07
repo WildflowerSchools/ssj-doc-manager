@@ -60,6 +60,10 @@ class Firebase {
 
             next(authUser)
           })
+          .catch((e) => {
+            console.log(e.message)
+            fallback()
+          })
       } else {
         fallback()
       }
