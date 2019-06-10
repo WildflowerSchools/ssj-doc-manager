@@ -63,9 +63,6 @@ class SchoolForm extends React.Component {
 
               firebaseAction
                 .then(docRef => {
-                  actions.setErrors(null)
-                  actions.setSubmitting(false)
-
                   let _id = mode === "create" ? docRef.id : id
 
                   return API.createDriveFolderForSchool(_id).then(response => {
@@ -73,13 +70,17 @@ class SchoolForm extends React.Component {
                   })
                 })
                 .then(id => {
+                  actions.setErrors(null)
+
                   onSuccess(id)
                 })
                 .catch(error => {
                   actions.setErrors(error)
-                  actions.setSubmitting(false)
 
                   onFailure(error)
+                })
+                .finally(() => {
+                  actions.setSubmitting(false)
                 })
             }}
           >

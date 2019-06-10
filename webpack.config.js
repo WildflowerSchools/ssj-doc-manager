@@ -43,6 +43,7 @@ module.exports = () => {
       new CopyWebpackPlugin([ 
         './src/client/index.html',
         './src/client/style.css',
+        {from: './src/client/favicon/*', flatten: true}
         /* Add an additional files to copy to dist here */
       ])
     ]

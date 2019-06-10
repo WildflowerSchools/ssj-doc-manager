@@ -69,9 +69,6 @@ class TeacherForm extends React.Component {
 
               firebaseAction
                 .then(docRef => {
-                  actions.setErrors(null)
-                  actions.setSubmitting(false)
-
                   let updates = []
 
                   let _id = mode === "create" ? docRef.id : id
@@ -101,13 +98,17 @@ class TeacherForm extends React.Component {
                   })
                 })
                 .then((id, _) => {
+                  actions.setErrors(null)
+
                   onSuccess(id)
                 })
                 .catch(error => {
                   actions.setErrors(error)
-                  actions.setSubmitting(false)
 
                   onFailure(error)
+                })
+                .finally(() => {
+                  actions.setSubmitting(false)
                 })
             }}
           >
