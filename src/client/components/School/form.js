@@ -40,7 +40,7 @@ class SchoolForm extends React.Component {
             initialValues={school}
             validationSchema={SchoolSchema}
             onSubmit={(values, actions) => {
-              actions.setSubmitting(false)
+              actions.setSubmitting(true)
 
               let final = Object.assign({}, values)
               final.teachers = values.teachers ? values.teachers.map(tid =>
