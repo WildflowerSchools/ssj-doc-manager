@@ -1,15 +1,15 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "firebase-react",
+  "//1": "built originally on glitch to quicky MVP an idea for replicating documents",
+  "//2": "thanks to https://glitch.com/edit/#!/firebase-react for help getting started w/ node + firebase",
+  "name": "wf-doc-manager",
   "version": "0.0.1",
-  "description": "A simple Firebase and React starter app.",
+  "description": "Wildflower firebase + node + react app for duplicating and tracking important documents",
   "main": "src/server/start.js",
   "scripts": {
     "start": "concurrently npm:webpack npm:server",
     "server": "node_modules/.bin/nodemon --ignore 'src/client/' --ignore 'dist/' src/server/start.js",
-    "webpack": "webpack --watch",
+    "webpack": "webpack --config webpack.dev.js --watch",
+    "build": "webpack --config webpack.prod.js",
     "fmt": "prettier --no-semi --write {'./src/**/*.js','./src/**/*.css'}"
   },
   "devDependencies": {
@@ -36,6 +36,7 @@
     "rxjs": "^6.5.2",
     "webpack": "^4.32.2",
     "webpack-cli": "^3.3.0",
+    "webpack-merge": "^4.2.1",
     "yup": "^0.27.0"
   },
   "dependencies": {
@@ -47,19 +48,20 @@
     "firebase-admin": "^7.4.0",
     "googleapis": "^40.0.0",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "firebase-tools": "^5.1.1"
+    "react-dom": "^16.8.0"
   },
   "engines": {
     "node": "11.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/firebase-react"
+    "url": "https://glitch.com/edit/#!/messy-cart"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "express",
+    "wildflower",
+    "react"
   ]
 }

@@ -189,9 +189,7 @@ import { gClient } from "./Google"
                         ownerDocumentIds.includes(tid)
                       )
                     if (intersection && intersection.length) {
-                      const msg = `Skipping file ${
-                        template.document_name
-                      } for ${owner.name}, file already exists`
+                      const msg = `Skipping file ${template.document_name} for ${owner.name}, file already exists`
                       throw new BreakChain(msg)
                     }
 
@@ -229,9 +227,7 @@ import { gClient } from "./Google"
                       .catch(err => {
                         //sendError(res, 500, "Unable to copy Drive file", "Failed copying the file, please try again")
                         console.log(err.message)
-                        const msg = `Unable to copy Drive file - Failed copying the file '${
-                          template.document_name
-                        }', please try again`
+                        const msg = `Unable to copy Drive file - Failed copying the file '${template.document_name}', please try again`
                         throw new BreakChain(msg)
                       })
                   })

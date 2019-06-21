@@ -1,6 +1,16 @@
-Deploy to Firebase with Glitch
+WF Doc Management
 =================
 
-This is a starter React app built with Babel and Webpack. The files are built a `dist` directory. The "Show Live" view is served through a simple express server in `server.js`.
+This project was originally built with Glitch: https://glitch.com/edit/#!/messy-cart
 
-Give it a remix and have a good time 🎉
+## Development
+
+Can be started locally using `npm start`
+
+### Docker
+
+App can also be run with docker-compose: `docker-compose up` 
+
+## Production
+
+App can be deployed using Docker. Prepare production image with `docker build .`
