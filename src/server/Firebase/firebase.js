@@ -3,7 +3,7 @@ import admin from "firebase-admin"
 class Firebase {
   constructor() {
     const serviceAccountKey = require(process.env
-      .GOOGLE_DEFAULT_APPLICATION_CREDENTIALS)
+      .FIREBASE_APPLICATION_CREDENTIALS)
 
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccountKey),
