@@ -1,9 +1,14 @@
 import admin from "firebase-admin"
 
+import config from "../config"
+
 class Firebase {
   constructor() {
-    const serviceAccountKey = require(process.env
-      .FIREBASE_APPLICATION_CREDENTIALS)
+    const serviceAccountKey = config["FIREBASE_APPLICATION_CREDENTIALS"]
+
+    if (!serviceAccountKey) {
+      process.exit(1)
+    }
 
     admin.initializeApp({
       credential: admin.credential.cert(serviceAccountKey),

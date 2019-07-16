@@ -7,9 +7,11 @@ WORKDIR /app
 
 RUN npm install
 
-COPY firebase.json .firebaserc .eslintrc.json .babelrc webpack* /app/
+COPY firebase.json .eslintrc.json .babelrc webpack* /app/
 
 COPY src/ /app/src/
+
+ENV NODE_ENV production
 
 RUN npm run build && npm prune --production
 
