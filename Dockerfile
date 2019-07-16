@@ -15,7 +15,5 @@ ENV NODE_ENV production
 
 RUN npm run build && npm prune --production
 
-COPY .data /app/
-
 CMD node src/server/start.js
 
