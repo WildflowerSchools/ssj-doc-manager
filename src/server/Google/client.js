@@ -1,11 +1,15 @@
 import { google } from "googleapis"
 
+import config from "../config"
 import GDriveManager from "./driveManager"
 
 class GClient {
   constructor() {
-    const serviceAccountKey = require(process.env
-      .GOOGLE_DEFAULT_APPLICATION_CREDENTIALS)
+    const serviceAccountKey = config["GOOGLE_DEFAULT_APPLICATION_CREDENTIALS"]
+
+    if (!serviceAccountKey) {
+      process.exit(1)
+    }
 
     this.jwt = new google.auth.JWT(
       serviceAccountKey.client_email,

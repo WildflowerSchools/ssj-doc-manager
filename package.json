@@ -1,65 +1,67 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-  "name": "firebase-react",
+  "//1": "built originally on glitch to quicky MVP an idea for replicating documents",
+  "//2": "thanks to https://glitch.com/edit/#!/firebase-react for help getting started w/ node + firebase",
+  "name": "wf-doc-manager",
   "version": "0.0.1",
-  "description": "A simple Firebase and React starter app.",
+  "description": "Wildflower firebase + node + react app for duplicating and tracking important documents",
   "main": "src/server/start.js",
   "scripts": {
     "start": "concurrently npm:webpack npm:server",
     "server": "node_modules/.bin/nodemon --ignore 'src/client/' --ignore 'dist/' src/server/start.js",
-    "webpack": "webpack --watch",
+    "webpack": "webpack --config webpack.dev.js --watch",
+    "build": "webpack --config webpack.prod.js",
     "fmt": "prettier --no-semi --write {'./src/**/*.js','./src/**/*.css'}"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/register": "^7.4.4",
-    "@material-ui/icons": "^4.0.1",
+    "@material-ui/icons": "^4.2.1",
+    "axios": "^0.18.1",
     "babel-loader": "^8.0.4",
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.1",
     "copy-webpack-plugin": "^4.5.4",
-    "dotenv": "^7.0.0",
     "firebase-tools": "^6.10.0",
-    "formik": "^1.5.4",
+    "formik": "^1.5.8",
     "nodemon": "^1.19.1",
     "prettier": "^1.16.4",
-    "react-clipboard.js": "^2.0.10",
-    "react-modal": "^3.8.1",
+    "react-clipboard.js": "^2.0.13",
+    "react-modal": "^3.9.1",
     "react-router-dom": "^5.0.0",
     "react-select": "^2.4.4",
-    "rxfire": "^3.5.0",
+    "rxfire": "^3.6.5",
     "rxjs": "^6.5.2",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.0",
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.6",
+    "webpack-merge": "^4.2.1",
     "yup": "^0.27.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.3",
-    "@material-ui/core": "^4.0.2",
-    "axios": "^0.18.1",
+    "@babel/core": "^7.5.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "@babel/preset-env": "^7.5.4",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
+    "@babel/runtime": "^7.5.4",
+    "@material-ui/core": "^4.2.0",
+    "dotenv": "^7.0.0",
     "express": "^4.17.1",
-    "firebase": "^6.1.0",
+    "firebase": "^6.3.0",
     "firebase-admin": "^7.4.0",
-    "googleapis": "^40.0.0",
+    "googleapis": "^40.0.1",
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "firebase-tools": "^5.1.1"
+    "react-dom": "^16.8.0"
   },
   "engines": {
     "node": "11.x"
   },
   "repository": {
-    "url": "https://glitch.com/edit/#!/firebase-react"
+    "url": "https://glitch.com/edit/#!/messy-cart"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "glitch",
-    "express"
+    "express",
+    "wildflower",
+    "react"
   ]
 }

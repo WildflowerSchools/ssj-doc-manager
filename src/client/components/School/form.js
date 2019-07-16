@@ -43,9 +43,9 @@ class SchoolForm extends React.Component {
               actions.setSubmitting(true)
 
               let final = Object.assign({}, values)
-              final.teachers = values.teachers ? values.teachers.map(tid =>
-                this.props.firebase.teacher(tid)
-              ) : []
+              final.teachers = values.teachers
+                ? values.teachers.map(tid => this.props.firebase.teacher(tid))
+                : []
 
               let firebaseAction = null
               if (mode === "create") {
