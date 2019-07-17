@@ -17,7 +17,7 @@ The following exposes port 3000 and loads a local `.env` file:
 
 ```
 docker build -t ssj-doc-manager .
-docker run --env-file ./.env --name="ssj-doc-manager" -e "FIREBASE_PROJECT_ID=ssj-document-manager" -p 3000:3000 ssj-doc-manager
+docker run --env-file ./.env --name="ssj-doc-manager" -p 3000:3000 ssj-doc-manager
 ```
 
 ## Commit tagged release

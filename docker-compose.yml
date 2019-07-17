@@ -7,9 +7,6 @@ services:
       dockerfile: local/Dockerfile
     env_file:
       - .env
-    environment:
-      - FIREBASE_APPLICATION_CREDENTIALS=/app/.data/firebaseServiceAccountKey.json
-      - GOOGLE_DEFAULT_APPLICATION_CREDENTIALS=/app/.data/defaultServiceAccountKey.json
     ports:
       - 3000:3000
     command: "scripts/setup-and-startup.sh"
