@@ -25,4 +25,8 @@ docker run --env-file ./.env --name="ssj-doc-manager" -p 3000:3000 ssj-doc-manag
 ```
 git tag -a v`date -u "+%Y-%m-%d-%H-%M-%S"` -m ""
 git push origin `git describe --abbrev=0`
+<<<<<<< Updated upstream
 ```
+=======
+```
+>>>>>>> Stashed changes
