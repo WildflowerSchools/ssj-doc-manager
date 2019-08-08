@@ -448,24 +448,26 @@ class TemplateListBase extends React.Component {
                 </ClickAwayListener>
               </div>
               <div style={{ padding: "5px 0" }}>
-                {fd.owner && fd.owner.path.startsWith("teachers/") && (
-                  <div>
-                    <b>Owner (teacher):</b>&nbsp;
-                    <TeacherDetails
-                      style={{ display: "inline-block" }}
-                      id={fd.owner.id}
-                    />
-                  </div>
-                )}
-                {fd.owner && fd.owner.path.startsWith("schools/") && (
-                  <div>
-                    <b>Owner (school):</b>&nbsp;
-                    <SchoolDetails
-                      style={{ display: "inline-block" }}
-                      id={fd.owner.id}
-                    />
-                  </div>
-                )}
+                {fd.owner &&
+                  fd.owner.path.startsWith("teachers/") && (
+                    <div>
+                      <b>Owner (teacher):</b>&nbsp;
+                      <TeacherDetails
+                        style={{ display: "inline-block" }}
+                        id={fd.owner.id}
+                      />
+                    </div>
+                  )}
+                {fd.owner &&
+                  fd.owner.path.startsWith("schools/") && (
+                    <div>
+                      <b>Owner (school):</b>&nbsp;
+                      <SchoolDetails
+                        style={{ display: "inline-block" }}
+                        id={fd.owner.id}
+                      />
+                    </div>
+                  )}
               </div>
               <div style={{ padding: "5px 0" }}>
                 <span>

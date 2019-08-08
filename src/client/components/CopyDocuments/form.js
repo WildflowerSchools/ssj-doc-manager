@@ -136,9 +136,10 @@ class CopyDocumentsForm extends React.Component {
                   component="div"
                 />
               </label>
-              {errors && errors[undefined] && (
-                <div className="error">{errors[undefined]}</div>
-              )}
+              {errors &&
+                errors[undefined] && (
+                  <div className="error">{errors[undefined]}</div>
+                )}
               <p>Number of documents being copied: {templates.length}</p>
               <button type="submit" disabled={isSubmitting}>
                 Make Copies

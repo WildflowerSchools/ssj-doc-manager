@@ -5,12 +5,12 @@ class GDriveManager {
     this.drive = google.drive("v3")
   }
 
-  createRootFolder(id) {
+  async createRootFolder(id) {
     const fileMetadata = {
       name: id,
       mimeType: "application/vnd.google-apps.folder"
     }
-    return new Promise((resolve, reject) => {
+    let createPromise = new Promise((resolve, reject) => {
       return this.drive.files
         .create({
           resource: fileMetadata,
@@ -25,6 +25,9 @@ class GDriveManager {
         })
         .catch(error => reject(error))
     })
+
+    let driveFolder = await createPromise
+    return driveFolder
   }
 
   copyFileIntoDestinationFolder(fileId, folderDestinationId, name) {
