@@ -155,10 +155,7 @@ class Firebase {
     )
 
     collectionData(schoolRef, "id")
-      .pipe(
-        take(1),
-        flatMap(x => x)
-      )
+      .pipe(take(1), flatMap(x => x))
       .subscribe(school => {
         onLoad(school.id)
       })
