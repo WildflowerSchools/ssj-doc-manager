@@ -3,10 +3,19 @@ const dotenv = require('dotenv')
 const webpack = require('webpack')
 
 module.exports = (() => {
-  const env = dotenv.config().parsed || {}
+  const validEnvKeys = [
+    'FIREBASE_AUTH_DOMAIN',
+    'FIREBASE_DATABASE_URL',
+    'FIREBASE_API_KEY',
+    'FIREBASE_STORAGE_BUCKET',
+    'FIREBASE_MESSAGING_SENDER_ID',
+    'FIREBASE_PROJECT_ID'
+  ]
 
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next])
+  const dotenv_parsed = dotenv.config().parsed || {}
+
+  const envKeys = validEnvKeys.reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(dotenv_parsed[next] || process.env[next])
     return prev
   }, {})
 

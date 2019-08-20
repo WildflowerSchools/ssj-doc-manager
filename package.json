@@ -20,7 +20,7 @@
     "concurrently": "^4.1.2",
     "copy-webpack-plugin": "^4.5.4",
     "css-loader": "^3.2.0",
-    "filepond": "^4.4.13",
+    "filepond": "^4.5.0",
     "firebase-tools": "^6.10.0",
     "formik": "^1.5.8",
     "nodemon": "^1.19.1",

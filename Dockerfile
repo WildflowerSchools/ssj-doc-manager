@@ -13,9 +13,6 @@ COPY src/ /app/src/
 
 ENV NODE_ENV production
 
-RUN npm run build && npm prune --production
-
-COPY .data /app/
-
-CMD node src/server/start.js
+# Need to run npm build at run time in order to load frontend scripts with ENV vars
+CMD npm run build && npm prune --production && node src/server/start.js
 
