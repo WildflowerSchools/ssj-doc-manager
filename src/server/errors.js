@@ -5,7 +5,7 @@ class SSJError extends Error {
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, CustomError)
+      Error.captureStackTrace(this, this.constructor)
     }
 
     this.name = "SSJError"
@@ -24,7 +24,7 @@ class SSJWarning extends Error {
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, CustomError)
+      Error.captureStackTrace(this, this.constructor)
     }
 
     this.name = "SSJWarning"
@@ -35,4 +35,4 @@ class SSJWarning extends Error {
   }
 }
 
-module.exports = { SSJError, SSJWarning }
+export { SSJError, SSJWarning }

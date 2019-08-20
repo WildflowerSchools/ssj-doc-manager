@@ -277,7 +277,7 @@ class TemplateListBase extends React.Component {
         let doc_link = ""
         if (fd.document_url) {
           doc_link = (
-            <a target="_blank" href={fd.document_url}>
+            <a target="_blank" href={fd.document_url} className="permanent-link-color">
               {fd.document_name || "unspecified"}
             </a>
           )

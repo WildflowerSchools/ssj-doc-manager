@@ -16,6 +16,8 @@ import { TeacherDetails } from "../Teacher"
 import { OrderBy } from "../Util"
 
 import * as STAGES from "../../constants/stages"
+import { Link } from "react-router-dom"
+import * as ROUTES from "../../constants/routes"
 
 class DocumentListFilterBase extends React.Component {
   constructor(props) {
@@ -397,7 +399,7 @@ class TemplateListBase extends React.Component {
         let doc_link = ""
         if (fd.document_url) {
           doc_link = (
-            <a target="_blank" href={fd.document_url}>
+            <a target="_blank" href={fd.document_url} className="permanent-link-color">
               {fd.document_name || "unspecified"}
             </a>
           )
@@ -422,7 +424,7 @@ class TemplateListBase extends React.Component {
                       onSuccess={() => {
                         this.handleTooltipOpen(fd.id)
                       }}
-                      title="Copy"
+                      title="Copy URL"
                     >
                       <Tooltip
                         PopperProps={{
@@ -448,26 +450,24 @@ class TemplateListBase extends React.Component {
                 </ClickAwayListener>
               </div>
               <div style={{ padding: "5px 0" }}>
-                {fd.owner &&
-                  fd.owner.path.startsWith("teachers/") && (
-                    <div>
-                      <b>Owner (teacher):</b>&nbsp;
-                      <TeacherDetails
-                        style={{ display: "inline-block" }}
-                        id={fd.owner.id}
-                      />
-                    </div>
-                  )}
-                {fd.owner &&
-                  fd.owner.path.startsWith("schools/") && (
-                    <div>
-                      <b>Owner (school):</b>&nbsp;
-                      <SchoolDetails
-                        style={{ display: "inline-block" }}
-                        id={fd.owner.id}
-                      />
-                    </div>
-                  )}
+                {fd.owner && fd.owner.path.startsWith("teachers/") && (
+                  <div>
+                    <b>Owner (teacher):</b>&nbsp;
+                    <TeacherDetails
+                      style={{ display: "inline-block" }}
+                      id={fd.owner.id}
+                    />
+                  </div>
+                )}
+                {fd.owner && fd.owner.path.startsWith("schools/") && (
+                  <div>
+                    <b>Owner (school):</b>&nbsp;
+                    <SchoolDetails
+                      style={{ display: "inline-block" }}
+                      id={fd.owner.id}
+                    />
+                  </div>
+                )}
               </div>
               <div style={{ padding: "5px 0" }}>
                 <span>
@@ -481,6 +481,9 @@ class TemplateListBase extends React.Component {
 
     return (
       <div>
+        <button>
+          <Link to={ROUTES.ADMIN_UPLOAD_DOCUMENT}>+ Upload Document</Link>
+        </button>
         <DocumentListFilter
           filters={this.state.filters}
           setSearch={this.setSearchFilter}

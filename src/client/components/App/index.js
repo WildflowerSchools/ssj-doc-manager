@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import AdminPage from "../Admin"
 import { TemplateCreatePage, TemplateEditPage } from "../TemplateDocument/"
+import { DocumentUploadPage } from "../Document/"
 import { SchoolCreatePage, SchoolEditPage } from "../School/"
 import { TeacherCreatePage, TeacherEditPage } from "../Teacher/"
 import LandingPage from "../Landing"
@@ -47,6 +48,12 @@ const AppBase = () => (
         exact
         path={ROUTES.ADMIN_EDIT_TEMPLATE}
         component={TemplateEditPage}
+      />
+
+      <Route
+        exact
+        path={ROUTES.ADMIN_UPLOAD_DOCUMENT}
+        component={DocumentUploadPage}
       />
 
       <Route

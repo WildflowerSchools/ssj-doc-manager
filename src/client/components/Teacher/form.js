@@ -99,16 +99,15 @@ class TeacherForm extends React.Component {
                 })
                 .then((id, _) => {
                   actions.setErrors(null)
+                  actions.setSubmitting(false)
 
                   onSuccess(id)
                 })
                 .catch(error => {
                   actions.setErrors(error)
+                  actions.setSubmitting(false)
 
                   onFailure(error)
-                })
-                .finally(() => {
-                  actions.setSubmitting(false)
                 })
             }}
           >
