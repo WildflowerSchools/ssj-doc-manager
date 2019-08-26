@@ -1,4 +1,4 @@
-WF Doc Management
+SSJ Doc Management
 =================
 
 This project was originally built with Glitch: https://glitch.com/edit/#!/messy-cart
