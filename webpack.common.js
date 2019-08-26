@@ -32,6 +32,10 @@ module.exports = (() => {
             cacheDirectory: true,
             cacheCompression: false
           }
+        },
+        {
+          test: /\.(css|less)$/,
+          loader: [ 'style-loader', 'css-loader' ]
         }
       ]
     },

@@ -1,11 +1,11 @@
 import { google } from "googleapis"
 
-import config from "../config"
+import config from "../../config"
 import GDriveManager from "./driveManager"
 
 class GClient {
   constructor() {
-    const serviceAccountKey = config["GOOGLE_DEFAULT_APPLICATION_CREDENTIALS"]
+    const serviceAccountKey = config.GOOGLE_DEFAULT_APPLICATION_CREDENTIALS
 
     if (!serviceAccountKey) {
       process.exit(1)
@@ -16,7 +16,7 @@ class GClient {
       null,
       serviceAccountKey.private_key,
       ["https://www.googleapis.com/auth/drive"],
-      process.env.GOOGLE_DOC_MANAGEMENT_USER
+      config.GOOGLE_DOC_MANAGEMENT_USER
     )
   }
 
@@ -25,7 +25,7 @@ class GClient {
     return await new Promise(resolve => {
       this.jwt.authorize((err, tokens) => {
         if (err) {
-          console.log(err)
+          console.error(err)
           resolve(false)
         } else {
           google.options({
