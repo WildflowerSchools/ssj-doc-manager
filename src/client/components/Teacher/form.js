@@ -8,7 +8,8 @@ import { withFirebase } from "../Firebase"
 import Select from "react-select"
 
 const TeacherSchema = Yup.object().shape({
-  name: Yup.string("Enter the name of the teacher").required("Name is required")
+  name: Yup.string("Enter the name of the teacher").required("Name is required"),
+  email: Yup.string("Enter the email of the teacher").required("Email is required")
 })
 
 class TeacherForm extends React.Component {
@@ -131,6 +132,16 @@ class TeacherForm extends React.Component {
                     autoComplete="off"
                   />
                   <ErrorMessage name="name" className="error" component="div" />
+                </label>
+                <label htmlFor="td_teacher_email">
+                  Email:
+                  <Field
+                    id="td_teacher_email"
+                    type="email"
+                    name="email"
+                    autoComplete="off"
+                  />
+                  <ErrorMessage name="email" className="error" component="div" />
                 </label>
                 <label htmlFor="td_schools">
                   School

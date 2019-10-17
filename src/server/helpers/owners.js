@@ -6,6 +6,11 @@ import ownerModel from "../models/owner"
 import templateModel from "../models/template"
 import pondHelper from "./pond"
 
+
+const verifyDriveFolderPrivileges = async (ownerId, ownerType) {
+
+}
+
 /**
  * Create a Google Drive folder for a given school or teacher. Will not generate a Drive folder if one already exists.
  *
@@ -37,7 +42,7 @@ const generateDriveFolderForOwner = async (ownerId, ownerType) => {
 
   const createDriveFolder = async () => {
     try {
-      return await gClient.driveManager.createRootFolder(ownerId)
+      return await gClient.driveManager.createRootFolder(owner.data().name)
     } catch (err) {
       throw new SSJError(
         "Unable to create Drive folder",

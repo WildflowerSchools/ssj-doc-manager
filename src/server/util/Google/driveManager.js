@@ -32,6 +32,76 @@ class GDriveManager {
     return driveFolder
   }
 
+  /**
+   * Will grant edit privileges on given fileId
+   *
+   * @param emails
+   * @returns {Promise<void>}
+   */
+  async addEditPrivilege(fileId, emails) {
+    const permissions = await new Promise((resolve, reject) => {
+      return this.drive.permissions
+        .create({
+          fileId: fileId,
+          fields: "id",
+          sendNotificationEmails: false,
+          resource: {
+            type: "user",
+            role: "writer",
+            allowFileDiscovery: false,
+            emailAddress:
+          }
+        })
+        .then((response, err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(response.data)
+          }
+        })
+        .catch(error => reject(error))
+    })
+
+    return permissions
+  }
+
+  /**
+   * Will remove edit privileges on given fileId
+   *
+   * @param emails
+   * @returns {Promise<void>}
+   */
+  async removeEditPrivilege(fileId, emails) {
+
+  }
+
+  async createSharedDrive(id, name) {
+    console.log(`Creating drive folder for owner '${id}' - ${name}`)
+
+    const sharedDriveMetadata = {
+      requestBody: {
+        name: name
+      }
+    }
+    const sharedDrive = await new Promise((resolve, reject) => {
+      return this.drive.drives
+        .create({
+          resource: sharedDriveMetadata,
+          fields: "id, webViewLink"
+        })
+        .then((response, err) => {
+          if (err) {
+            reject(err)
+          } else {
+            resolve(response.data)
+          }
+        })
+        .catch(error => reject(error))
+    })
+
+    return sharedDrive
+  }
+
   async setFilePermissionPublic(fileId) {
     const permissions = await new Promise((resolve, reject) => {
       return this.drive.permissions
