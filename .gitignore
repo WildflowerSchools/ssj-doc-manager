@@ -2,5 +2,6 @@
 .firebaserc
 /.firebase/
 node_modules
+.node-version
 /dist/
 /.data/
