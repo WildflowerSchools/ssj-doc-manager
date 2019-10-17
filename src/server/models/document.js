@@ -44,13 +44,13 @@ const createDocumentForOwnerFromGoogleDocument = async (
   const template = await getTemplateRefHandleNull()
 
   let newDocument = Object.assign(
+    template.data(),
     {
       owner: owner.ref(),
       template_document: template.ref(),
       document_name: template.data().document_name || googleDocument.name,
       document_url: googleDocument.webViewLink
-    },
-    template.data()
+    }
   )
   // The template that's copied has a "documents" array attribute that should be removed
   delete newDocument["documents"]

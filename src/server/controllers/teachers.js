@@ -4,14 +4,20 @@ import { SSJError } from "../errors"
 import { sendSuccess, sendError } from "../response"
 import { firebase } from "../util/Firebase"
 import ownerHelper from "../helpers/owners"
-import teacherModel from "../models/teacher"
 
 const router = express.Router()
 
-router.post("/:teacher_id/generate_drive_folder", async (req, res) => {
-  const ref = firebase.teacher(req.params.teacher_id)
+router.post("/:teacherId/generate_drive_folder", async (req, res) => {
+  // const ref = firebase.teacher(req.params.teacher_id)
+  const teacherId = req.params.teacherId
+
+  if (!teacherId) {
+    sendError(res, 422, "Unprocessable Entity", "Missing teacher ID")
+    return
+  }
+
   try {
-    await ownerHelper.generateDriveFolderForOwner(ref, "teacher")
+    await ownerHelper.generateDriveFolderForOwner(teacherId, "teacher")
     sendSuccess(res)
   } catch (e) {
     if (e instanceof SSJError) {

@@ -73,6 +73,9 @@ class GDriveManager {
           if (err) {
             reject(err)
           } else {
+            const newFile = response.data
+            console.log(`Copy File '${fileId}' done: ${JSON.stringify(newFile)}`)
+            this.setFilePermissionPublic(newFile.id)
             resolve(response.data)
           }
         })

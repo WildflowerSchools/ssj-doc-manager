@@ -16,9 +16,9 @@ router.post("/:schoolId/generate_drive_folder", async (req, res) => {
     return
   }
 
-  const ref = firebase.school(schoolId)
+  //const ref = firebase.school(schoolId)
   try {
-    await ownerHelper.generateDriveFolderForOwner(ref, "school")
+    await ownerHelper.generateDriveFolderForOwner(schoolId, "school")
     sendSuccess(res)
   } catch (e) {
     if (e instanceof SSJError) {
